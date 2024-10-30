@@ -5,9 +5,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: deno({
-    start: false,
-  }),
+  adapter: deno(),
   integrations: [mdx(), sitemap()],
   output: "hybrid",
   site: "https://adamknee.dev",

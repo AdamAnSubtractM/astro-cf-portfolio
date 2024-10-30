@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import { chromium } from "playwright-chromium";
 
-export const GET: APIRoute = async () => {
+export async function GET() {
   const htmlContent = `
       <html>
         <head>
@@ -39,4 +39,4 @@ export const GET: APIRoute = async () => {
       "Content-Disposition": "inline; filename=resume.pdf",
     },
   });
-};
+}
