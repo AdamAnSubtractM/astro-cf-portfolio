@@ -1,8 +1,8 @@
 ---
-title: "Markdown Style Guide"
-description: "Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro."
-pubDate: "Jun 19 2024"
-heroImage: "/blog-placeholder-1.jpg"
+title: 'Markdown Style Guide'
+description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
+pubDate: 'Jun 19 2024'
+heroImage: '/blog-placeholder-1.jpg'
 ---
 
 Here is a sample of some basic Markdown syntax that can be used when writing
@@ -87,7 +87,8 @@ and optionally with in-line changes such as annotations and abbreviations.
 > Don't communicate by sharing memory, share memory by communicating.<br> —
 > <cite>Rob Pike[^1]</cite>
 
-[^1]: The above quote is excerpted from Rob Pike's
+[^1]:
+    The above quote is excerpted from Rob Pike's
     [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) during Gopherfest,
     November 18, 2015.
 
@@ -118,7 +119,7 @@ markdown, typescript, txt, bash
 
 ````markdown
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -134,7 +135,7 @@ markdown, typescript, txt, bash
 ### Output
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />

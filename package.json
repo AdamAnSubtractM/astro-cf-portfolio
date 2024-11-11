@@ -5,23 +5,30 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && pnpm run generate:resume && astro build",
+    "build": "astro check && pnpm build:resume && pnpm run generate:resume && astro build",
     "preview": "astro preview",
-    "preview:deno": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
-    "generate:resume": "deno run -A ./scripts/generate-resume.ts",
+    "build:resume": "pnpm exec tsc ./scripts/generate-resume.cts --outDir ./dist",
+    "generate:resume": "node ./dist/generate-resume.cjs",
     "astro": "astro",
-    "format": "deno fmt && prettier --write ."
+    "lint": "pnpm dlx eslint",
+    "format": "prettier --write . && pnpm run lint"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/deno": "^5.0.1",
+    "@astrojs/cloudflare": "^11.2.0",
     "@astrojs/mdx": "^3.1.8",
     "@astrojs/rss": "^4.0.9",
     "@astrojs/sitemap": "^3.2.1",
-    "@deno/astro-adapter": "^0.1.4",
-    "@std/fs": "npm:@jsr/std__fs@^1.0.5",
     "astro": "^4.16.7",
-    "playwright-chromium": "^1.48.2",
+    "playwright-chromium": "^1.48.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.14.0",
+    "@types/node": "^22.9.0",
+    "eslint": "^9.14.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "^3.3.3",
     "typescript": "^5.6.3"
   }
 }
