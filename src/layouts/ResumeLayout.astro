@@ -1,0 +1,28 @@
+---
+import BaseLayout from './BaseLayout.astro';
+---
+
+<BaseLayout>
+  <section class="resume">
+    <slot />
+  </section>
+</BaseLayout>
+
+<style>
+  body {
+    @media screen {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+      align-items: stretch;
+      gap: 1rem;
+    }
+  }
+  .resume {
+    @media screen {
+      margin: auto;
+      max-width: 794px;
+      width: 100%;
+    }
+  }
+</style>
