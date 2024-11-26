@@ -3,7 +3,6 @@ import ResumeLayout from '../layouts/ResumeLayout.astro';
 import { getResume } from '../utils/sanity';
 import { PortableText } from 'astro-portabletext';
 import type { PortableTextBlock } from '@portabletext/types';
-import { convertTypeAcquisitionFromJson } from 'typescript';
 
 type Job = {
   description: PortableTextBlock;
@@ -15,7 +14,6 @@ type Skills = {
 };
 
 const resume = await getResume();
-console.log({ resume }, { svg: resume.logo.svg });
 ---
 
 <ResumeLayout>
