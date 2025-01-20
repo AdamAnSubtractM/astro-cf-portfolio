@@ -1,108 +1,66 @@
 ---
 import ResumeLayout from '../layouts/ResumeLayout.astro';
+import ResumeHeader from '../components/ResumeHeader.astro';
+import ResumeSection from '../components/ResumeSection.astro';
+import ResumeItem from '../components/ResumeItem.astro';
+import ResumeSkills from '../components/ResumeSkills.astro';
+import NotFound from '../components/NotFound.astro';
 import { getResume } from '../utils/sanity';
 import { PortableText } from 'astro-portabletext';
 import type { PortableTextBlock } from '@portabletext/types';
 
 type Job = {
-  description: PortableTextBlock;
+  title: string;
+  company: string;
+  startdate: string;
+  enddate?: string;
+  description?: PortableTextBlock;
 };
 
-type Skills = {
-  title: string;
-  skillsContent: PortableTextBlock;
-};
+type Study = Omit<Job, 'company'>;
 
 const resume = await getResume();
 ---
 
 <ResumeLayout>
-  {!resume && <p>Failed to load resume. Please try again later.</p>}
-  {
-    (resume?.logo?.svg || resume?.contactInfo) && (
-      <header>
-        {(resume?.contactInfo?.name || resume?.contactInfo?.title) && (
-          <div>
-            <h1>{resume.contactInfo.name}</h1>
-            <h2>{resume.contactInfo.title}</h2>
-          </div>
-        )}
-        {(resume?.logo?.svg || resume?.contactInfo?.email) && (
-          <div>
-            {resume?.logo?.svg && <Fragment set:html={resume.logo.svg} />}
-            {resume?.contactInfo?.email && <a href="mailto:">{resume.contactInfo.email}</a>}
-          </div>
-        )}
-      </header>
-    )
-  }
-  {
-    (resume?.highlights?.length || resume?.experience?.length || resume?.skills.length) && (
-      <section class="wrapper">
-        {resume?.experience?.length && (
-          <main>
-            {resume?.experience?.length && (
-              <section class="experience">
-                <h2>Experience</h2>
-                {resume.experience.map((job: Job) => (
-                  <>{job?.description && <PortableText value={job.description} />}</>
-                ))}
-              </section>
-            )}
-          </main>
-        )}
-        {(resume?.highlights?.length || resume?.skills?.length) && (
-          <aside>
-            {resume?.highlights?.length && (
-              <section class="hightlights">
-                <h2>Highlights</h2>
-                <PortableText value={resume.highlights} />
-              </section>
-            )}
-            {resume?.skills?.length && (
-              <section class="skills">
-                <h2>Skills & Tools</h2>
-                {resume.skills.map((skillsForResume: Skills) => (
-                  <>{skillsForResume?.skillsContent && <PortableText value={skillsForResume?.skillsContent} />}</>
-                ))}
-              </section>
-            )}
-          </aside>
-        )}
-      </section>
-    )
-  }
+  {!resume && <NotFound />}
+  <ResumeHeader {...resume} />
+  <section>
+    {
+      (resume?.highlights?.length || resume?.experience?.length) && (
+        <main>
+          <ResumeSection title="Highlights">
+            {resume?.highlights?.length && <PortableText value={resume.highlights} />}
+          </ResumeSection>
+          <ResumeSection title="Experience">
+            {resume?.experience?.map((job: Job) => (
+              <ResumeItem subtitle={job?.company} {...job} />
+            ))}
+          </ResumeSection>
+          {resume?.educationEnabled && (
+            <ResumeSection title="Education">
+              {resume?.education?.map((study: Study) => (
+                <ResumeItem {...study} />
+              ))}
+            </ResumeSection>
+          )}
+        </main>
+      )
+    }
+    {
+      resume?.skills?.length && (
+        <aside>
+          <ResumeSection title="Skills & Tools">
+            <ResumeSkills skills={resume.skills} />
+          </ResumeSection>
+        </aside>
+      )
+    }
+  </section>
 </ResumeLayout>
 
 <style>
-  header {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-    > div {
-      display: flex;
-      flex-flow: column nowrap;
-      gap: 1rem;
-    }
-    @media all and (min-width: 580px) {
-      flex-flow: row nowrap;
-    }
-  }
-  h1,
-  h2 {
-    margin: 0;
-    line-height: 1;
-  }
-  .wrapper {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-    @media all and (min-width: 580px) {
-      flex-flow: row nowrap;
-    }
+  section {
+    padding: 0 var(--gap, 1rem);
   }
 </style>

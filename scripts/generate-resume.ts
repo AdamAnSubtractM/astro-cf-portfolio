@@ -1,24 +1,33 @@
-import * as path from 'path';
+import { readFile, mkdir } from 'fs/promises';
 import { chromium } from 'playwright-chromium';
-import { promises as fs } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 async function generatePdf() {
   const pubDir = './public';
-  const pdfPath = path.join(pubDir, 'adam-knee-resume.pdf');
-  const pdfSettings = { format: 'A4', path: pdfPath, printBackground: true };
+  const pdfPath = join(pubDir, 'adam-knee-resume.pdf');
+  const pdfSettings = {
+    width: '8.5in',
+    height: '11in',
+    path: pdfPath,
+    printBackground: true
+  };
 
-  const resumeHTMLPath = path.join(__dirname, './resume/index.html');
+  const resumeHTMLPath = join(__dirname, '../dist/resume/index.html');
 
   const browser = await chromium.launch();
   const page = await browser.newPage();
 
-  const htmlContent = await fs.readFile(resumeHTMLPath, 'utf8');
+  const htmlContent = await readFile(resumeHTMLPath, 'utf8');
 
   // Set content and wait for it to load
   await page.setContent(htmlContent, { waitUntil: 'networkidle' });
 
   // Ensure public directory exists
-  await fs.mkdir(pubDir, { recursive: true });
+  await mkdir(pubDir, { recursive: true });
 
   // Generate PDF
   await page.pdf(pdfSettings);

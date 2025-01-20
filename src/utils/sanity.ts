@@ -12,16 +12,16 @@ export async function getResume(query?: string) {
   const _query =
     query ??
     `*[_type == "resume"][0] {
+      ...,
+      "logo": logo->,
+      "contactInfo": contactInfo->{
         ...,
-        "logo": *[_type == "logo"][0] {
-            ...,
-        },
-        "contactInfo": *[_type == "contactInfo"][0] {
-            ...,
-            "socials": *[_type == "social"] 
-        },
-        "experience": *[_type == "experience"],
-        "skills": *[_type == "skills"]
+        "socials": *[_type == "social"]
+      },
+      "experience": experience[]->{...},
+      "education": education[]->{...},
+      "skills": skills[]->{...},
+      educationEnabled
     }`;
   const resume = await client.fetch(_query);
   return resume;

@@ -1,0 +1,118 @@
+---
+type Social = {
+  platform: string;
+  url: string;
+};
+
+type Props = {
+  logo: {
+    svg?: string;
+    png?: string;
+  };
+  contactInfo: {
+    name?: string;
+    title?: string;
+    email?: string;
+    socials?: Social[];
+  };
+};
+
+const { logo, contactInfo } = Astro.props;
+---
+
+{
+  (contactInfo || logo?.svg) && (
+    <header>
+      {(contactInfo?.name || contactInfo?.title || logo?.svg) && (
+        <div>
+          <div>
+            {contactInfo?.name && <h1>{contactInfo.name}</h1>}
+            {contactInfo?.title && <h2>{contactInfo.title}</h2>}
+          </div>
+          {logo?.svg && (
+            <div class="logo">
+              <Fragment set:html={logo.svg} />
+            </div>
+          )}
+        </div>
+      )}
+      {(contactInfo?.email || contactInfo?.socials?.length) && (
+        <div>
+          <ul>
+            {contactInfo?.email && (
+              <li>
+                <a href={`mailto:${contactInfo.email}`} title="Click to email Adam">
+                  {contactInfo.email}
+                </a>
+              </li>
+            )}
+            {contactInfo?.socials?.map((social: Social) => (
+              <li>
+                <a href={social.url} title={`Click to view ${social.platform}`} target="_blank">
+                  {social.platform}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </header>
+  )
+}
+
+<style>
+  header {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--gap-lg, 2rem);
+    background-color: var(--color-accent);
+    padding: var(--gap, 1rem) var(--gap-lg, 2rem);
+    > div {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+      align-items: stretch;
+      gap: var(--gap-xs, 0.25rem);
+    }
+    @media all and (min-width: 580px) {
+      flex-flow: row nowrap;
+      align-items: stretch;
+    }
+  }
+  h1,
+  h2 {
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+  }
+  h1 {
+    font-weight: 900;
+  }
+  h2 {
+    font-weight: normal;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    gap: var(--gap-xs, 0.25rem);
+    height: 100%;
+    font-size: 0.9rem;
+    @media all and (min-width: 580px) {
+      align-items: flex-end;
+      text-align: right;
+    }
+  }
+  a {
+    color: royalblue;
+  }
+  .logo {
+    margin-top: var(--gap, 1rem);
+  }
+</style>

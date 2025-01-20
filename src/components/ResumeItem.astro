@@ -1,0 +1,59 @@
+---
+import DateRange from './DateRange.astro';
+import { PortableText } from 'astro-portabletext';
+import type { PortableTextBlock } from '@portabletext/types';
+
+type Props = {
+  title?: string;
+  subtitle?: string;
+  startdate?: string;
+  enddate?: string;
+  description?: PortableTextBlock;
+};
+
+const { title, subtitle, startdate, enddate, description } = Astro.props;
+---
+
+<section>
+  {
+    (title || subtitle) && (
+      <header>
+        <div>
+          {title && <h3>{title}</h3>}
+          {subtitle && <h4>{subtitle}</h4>}
+        </div>
+        {startdate && <DateRange startdate={startdate} enddate={enddate} />}
+      </header>
+    )
+  }
+  {description && <PortableText value={description} />}
+</section>
+
+<style>
+  section {
+    padding: var(--gap-sm, 0.5rem) 0;
+    border-bottom: var(--border-alternate);
+    page-break-inside: avoid;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--gap-xs, 0.25rem);
+  }
+  h3,
+  h4 {
+    font-size: 1.12rem;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+    page-break-after: avoid;
+  }
+  h4 {
+    font-weight: normal;
+  }
+</style>

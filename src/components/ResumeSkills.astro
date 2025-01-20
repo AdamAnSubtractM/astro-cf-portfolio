@@ -1,0 +1,44 @@
+---
+import { PortableText } from 'astro-portabletext';
+import type { PortableTextBlock } from '@portabletext/types';
+
+type SkillsColumn = {
+  title: string;
+  skillsContent: PortableTextBlock;
+};
+
+type Props = {
+  skills: SkillsColumn[];
+};
+
+const { skills } = Astro.props;
+---
+
+{
+  skills?.length && (
+    <div>
+      {skills?.map((skillsColumn: SkillsColumn) => (
+        <>{skillsColumn?.skillsContent && <PortableText value={skillsColumn.skillsContent} />}</>
+      ))}
+    </div>
+  )
+}
+
+<style>
+  div {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    gap: var(--gap-sm, 0.5rem);
+    page-break-inside: avoid;
+    @media all and (min-width: 580px) {
+      flex-flow: row wrap;
+      gap: unset;
+    }
+    ul {
+      @media all and (min-width: 580px) {
+        width: 25%;
+      }
+    }
+  }
+</style>

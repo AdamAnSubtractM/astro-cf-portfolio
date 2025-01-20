@@ -7,6 +7,6 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   adapter: cloudflare(),
   integrations: [mdx(), sitemap()],
-  output: 'hybrid',
+  output: 'static',
   site: 'https://adamknee.dev'
 });
