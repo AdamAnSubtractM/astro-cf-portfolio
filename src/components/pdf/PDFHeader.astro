@@ -18,12 +18,16 @@ type Props = {
 };
 
 const { logo, contactInfo } = Astro.props;
+
+const hasPrimaryInfo = contactInfo?.name || contactInfo?.title;
+const hasSecpondaryInfo = contactInfo?.email || contactInfo?.socials?.length;
+const hasContactInfo = hasPrimaryInfo || hasSecpondaryInfo;
 ---
 
 {
-  (contactInfo || logo?.svg) && (
+  hasContactInfo && (
     <header>
-      {(contactInfo?.name || contactInfo?.title || logo?.svg) && (
+      {hasPrimaryInfo && (
         <div>
           <div>
             {contactInfo?.name && <h1>{contactInfo.name}</h1>}
@@ -36,7 +40,7 @@ const { logo, contactInfo } = Astro.props;
           )}
         </div>
       )}
-      {(contactInfo?.email || contactInfo?.socials?.length) && (
+      {hasSecpondaryInfo && (
         <div>
           <ul>
             {contactInfo?.email && (
@@ -66,15 +70,15 @@ const { logo, contactInfo } = Astro.props;
     flex-flow: column nowrap;
     justify-content: space-between;
     align-items: flex-start;
-    gap: var(--gap-lg, 2rem);
+    gap: var(--gap-lg, 2em);
     background-color: var(--color-accent);
-    padding: var(--gap, 1rem) var(--gap-lg, 2rem);
+    padding: var(--gap, 1em) var(--gap-lg, 2em);
     > div {
       display: flex;
       flex-flow: column nowrap;
       justify-content: space-between;
       align-items: stretch;
-      gap: var(--gap-xs, 0.25rem);
+      gap: var(--gap-xs, 0.25em);
     }
     @media all and (min-width: 580px) {
       flex-flow: row nowrap;
@@ -83,7 +87,7 @@ const { logo, contactInfo } = Astro.props;
   }
   h1,
   h2 {
-    font-size: 2rem;
+    font-size: 2em;
     margin: 0;
     padding: 0;
     line-height: 1;
@@ -101,9 +105,9 @@ const { logo, contactInfo } = Astro.props;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-    gap: var(--gap-xs, 0.25rem);
+    gap: var(--gap-xs, 0.25em);
     height: 100%;
-    font-size: 0.9rem;
+    font-size: 0.9em;
     @media all and (min-width: 580px) {
       align-items: flex-end;
       text-align: right;
@@ -113,6 +117,11 @@ const { logo, contactInfo } = Astro.props;
     color: royalblue;
   }
   .logo {
-    margin-top: var(--gap, 1rem);
+    margin-top: var(--gap, 1em);
+    svg {
+      width: 6.5em;
+      max-width: 100%;
+      height: auto;
+    }
   }
 </style>

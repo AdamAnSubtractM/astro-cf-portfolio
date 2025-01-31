@@ -3,18 +3,19 @@ import BaseLayout from './BaseLayout.astro';
 ---
 
 <BaseLayout>
-  <section class="resume">
+  <slot name="head" slot="head" />
+  <section id="pdf" class="pdf">
     <slot />
   </section>
 </BaseLayout>
 
 <style>
   :root {
-    --gap-xs: 0.25rem;
-    --gap-sm: 0.5rem;
-    --gap: 1rem;
-    --gap-lg: 2rem;
-    --gap-xl: 4rem;
+    --gap-xs: 0.25em;
+    --gap-sm: 0.5em;
+    --gap: 1em;
+    --gap-lg: 2em;
+    --gap-xl: 4em;
     --color-accent: #f2f2f2;
     --border-width: 1px;
     --border: var(--border-width) solid var(--color-accent);
@@ -34,18 +35,19 @@ import BaseLayout from './BaseLayout.astro';
     height: 100%;
     min-height: 100vh;
   }
-  .resume {
+  .pdf {
     margin: auto;
-    max-width: calc(var(--size-letter) + (2 * var(--gap, 1rem)));
+    max-width: calc(var(--size-letter) + (2 * var(--gap, 1em)));
     width: 100%;
-    padding: var(--gap, 1rem);
+    padding: var(--gap, 1em);
     display: flex;
     flex-flow: column nowrap;
+    font-size: 1em;
     @media print {
       max-width: none;
       padding: 0;
-      margin: var(--gap, 1rem);
-      width: calc(100% - (2 * var(--gap, 1rem)));
+      margin: var(--gap, 1em);
+      width: calc(100% - (2 * var(--gap, 1em)));
     }
   }
 </style>

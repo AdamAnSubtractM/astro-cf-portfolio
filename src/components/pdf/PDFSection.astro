@@ -1,0 +1,37 @@
+---
+type Props = {
+  title?: string;
+  includePadding?: boolean;
+};
+
+const { title, includePadding } = Astro.props;
+---
+
+<section class={`section ${includePadding ? 'padding' : ''}`}>
+  {title && <h2>{title}</h2>}
+  <slot />
+</section>
+
+<style>
+  h2 {
+    font-weight: 900;
+    font-size: 1.5em;
+    border-bottom: var(--border);
+    padding-bottom: var(--gap-sm, 0.5em);
+    margin-bottom: 0;
+    page-break-after: avoid;
+  }
+  section {
+    padding: 0 var(--gap, 1em);
+    p {
+      margin: 0;
+      padding: 0;
+    }
+    ul {
+      margin: 0.5em 0;
+    }
+  }
+  .padding {
+    padding: var(--gap, 1em);
+  }
+</style>

@@ -1,0 +1,77 @@
+---
+import PDFHeader from './PDFHeader.astro';
+import PDFSection from './PDFSection.astro';
+import ResumeItem from './ResumeItem.astro';
+import ResumeSkills from './ResumeSkills.astro';
+import NotFound from '../../components/NotFound.astro';
+import { getResume } from '../../utils/sanity';
+import { PortableText } from 'astro-portabletext';
+import type { PortableTextBlock } from '@portabletext/types';
+
+type Job = {
+  title: string;
+  company: string;
+  startdate: string;
+  enddate?: string;
+  description?: PortableTextBlock;
+};
+
+type Study = Omit<Job, 'company'>;
+
+const resume = await getResume();
+
+const hasEducation = resume?.educationEnabled && resume?.education?.length;
+const hasMainContent = resume?.highlights?.length || resume?.experience?.length || hasEducation;
+const hasAsideContent = resume?.skills?.length;
+---
+
+<>
+  {!resume && <NotFound />}
+  {
+    resume && (
+      <>
+        <PDFHeader {...resume} />
+        {(hasMainContent || hasAsideContent) && (
+          <section>
+            {hasMainContent && (
+              <main>
+                {resume?.highlights?.length && (
+                  <PDFSection title="Highlights">
+                    <PortableText value={resume.highlights} />
+                  </PDFSection>
+                )}
+                {resume?.experience?.length && (
+                  <PDFSection title="Experience">
+                    {resume.experience.map((job: Job) => (
+                      <ResumeItem subtitle={job?.company} {...job} />
+                    ))}
+                  </PDFSection>
+                )}
+                {hasEducation && (
+                  <PDFSection title="Education">
+                    {resume.education.map((study: Study) => (
+                      <ResumeItem {...study} />
+                    ))}
+                  </PDFSection>
+                )}
+              </main>
+            )}
+            {hasAsideContent && (
+              <aside>
+                <PDFSection title="Skills & Tools">
+                  <ResumeSkills skills={resume.skills} />
+                </PDFSection>
+              </aside>
+            )}
+          </section>
+        )}
+      </>
+    )
+  }
+</>
+
+<style>
+  section {
+    padding: 0 var(--gap, 1rem);
+  }
+</style>

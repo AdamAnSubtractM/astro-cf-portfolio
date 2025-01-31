@@ -8,23 +8,39 @@ const client: SanityClient = createClient({
   useCdn: false
 });
 
-export async function getResume(query?: string) {
-  const _query =
-    query ??
-    `*[_type == "resume"][0] {
-      ...,
-      "logo": logo->,
-      "contactInfo": contactInfo->{
-        ...,
-        "socials": *[_type == "social"]
-      },
-      "experience": experience[]->{...},
-      "education": education[]->{...},
-      "skills": skills[]->{...},
-      educationEnabled
-    }`;
-  const resume = await client.fetch(_query);
+async function getSanityData(query: string) {
+  const resume = await client.fetch(query);
   return resume;
+}
+
+export async function getResume() {
+  const _query = `*[_type == "resume"][0] {
+                    ...,
+                    "logo": logo->,
+                    "contactInfo": contactInfo->{
+                      ...,
+                      "socials": *[_type == "social"]
+                    },
+                    "experience": experience[]->{...},
+                    "education": education[]->{...},
+                    "skills": skills[]->{...},
+                    educationEnabled
+                  }`;
+  const resume = await getSanityData(_query);
+  return resume;
+}
+
+export async function getCoverLetter(id: string) {
+  const _query = `*[_type == "coverLetter" && _id == '${id}'][0] {
+                    ...,
+                    "logo": logo->,
+                      "contactInfo": contactInfo->{
+                        ...,
+                        "socials": *[_type == "social"]
+                      },
+                  }`;
+  const coverLetter = await getSanityData(_query);
+  return coverLetter;
 }
 
 export default client;

@@ -1,5 +1,5 @@
 ---
-import DateRange from './DateRange.astro';
+import DateRange from '../DateRange.astro';
 import { PortableText } from 'astro-portabletext';
 import type { PortableTextBlock } from '@portabletext/types';
 
@@ -31,7 +31,7 @@ const { title, subtitle, startdate, enddate, description } = Astro.props;
 
 <style>
   section {
-    padding: var(--gap-sm, 0.5rem) 0;
+    padding: var(--gap-sm, 0.5em) 0;
     border-bottom: var(--border-alternate);
     page-break-inside: avoid;
     &:last-child {
@@ -43,11 +43,11 @@ const { title, subtitle, startdate, enddate, description } = Astro.props;
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: flex-start;
-    gap: var(--gap-xs, 0.25rem);
+    gap: var(--gap-xs, 0.25em);
   }
   h3,
   h4 {
-    font-size: 1.12rem;
+    font-size: 1.12em;
     line-height: 1.2;
     margin: 0;
     padding: 0;

@@ -29,15 +29,17 @@ const { skills } = Astro.props;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-    gap: var(--gap-sm, 0.5rem);
     page-break-inside: avoid;
+    padding: var(--gap-sm, 0.5em) 0;
+    gap: 0;
     @media all and (min-width: 580px) {
       flex-flow: row wrap;
-      gap: unset;
+      gap: var(--gap-sm, 0.5em);
     }
     ul {
+      margin: 0;
       @media all and (min-width: 580px) {
-        width: 25%;
+        width: calc(25% - var(--gap-sm, 0.5em));
       }
     }
   }

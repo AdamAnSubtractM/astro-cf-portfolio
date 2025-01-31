@@ -1,0 +1,101 @@
+---
+export const prerender = false;
+
+import { PortableText } from 'astro-portabletext';
+import NotFound from '../../components/NotFound.astro';
+import PDFHeader from '../../components/pdf/PDFHeader.astro';
+import PDFSection from '../../components/pdf/PDFSection.astro';
+import PDFLayout from '../../layouts/PDFLayout.astro';
+import { getCoverLetter } from '../../utils/sanity';
+
+type Props = { id: string };
+
+const { id } = Astro.params;
+
+// Fetch the cover letter data based on the `id` parameter
+const coverLetter = await getCoverLetter(id!);
+
+Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+---
+
+<PDFLayout>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </Fragment>
+  {!coverLetter && <NotFound />}
+  <PDFHeader {...coverLetter} />
+  <PDFSection includePadding>
+    {coverLetter?.jobTitle && <h1>{coverLetter.jobTitle}</h1>}
+    {coverLetter?.companyName && <h2>{coverLetter.companyName}</h2>}
+    <article>
+      {
+        coverLetter?.companyAddress && (
+          <section class="company-details">
+            <PortableText value={coverLetter.companyAddress} />
+          </section>
+        )
+      }
+      {coverLetter?.greeting && <p class="greeting">{coverLetter.greeting},</p>}
+      {
+        coverLetter?.openingParagraph && (
+          <section class="opening-paragraph">
+            <PortableText value={coverLetter.openingParagraph} />
+          </section>
+        )
+      }
+      {
+        coverLetter?.keyHighlights && (
+          <section class="key-highlights">
+            <PortableText value={coverLetter.keyHighlights} />
+          </section>
+        )
+      }
+      {
+        coverLetter?.closingParagraph && (
+          <section class="closing-paragraph">
+            <PortableText value={coverLetter.closingParagraph} />
+          </section>
+        )
+      }
+      {
+        coverLetter?.signOff && (
+          <>
+            <p class="sign-off">{coverLetter.signOff},</p>
+            <p>Adam Knee</p>
+          </>
+        )
+      }
+    </article>
+  </PDFSection>
+</PDFLayout>
+
+<style>
+  h1,
+  h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    font-weight: normal;
+  }
+  h1 {
+    font-weight: 700;
+  }
+  h2 {
+    display: inline-flex;
+    border-bottom: var(--border);
+    padding-bottom: var(--gap-xs, 0.25em);
+  }
+  .company-details {
+    margin-top: var(--gap-xs, 0.25em);
+  }
+  .greeting,
+  .sign-off {
+    margin-top: var(--gap-xl, 4em);
+  }
+  .opening-paragraph {
+    margin-top: var(--gap-xl, 4em);
+  }
+  .key-highlights {
+    margin: var(--gap-lg, 2em) 0;
+  }
+</style>
