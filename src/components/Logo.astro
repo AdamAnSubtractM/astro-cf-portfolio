@@ -1,0 +1,30 @@
+---
+import LogoSVG from './solidjs/LogoSVG';
+---
+
+<div class="logo">
+  <a href="/" title="View Adam's home page">
+    <LogoSVG />
+  </a>
+</div>
+
+<style>
+  .logo {
+    display: flex;
+    align-items: center;
+    svg {
+      max-width: 100%;
+      width: 120px;
+    }
+  }
+  a {
+    color: currentColor;
+    border-radius: var(--radius-md);
+  }
+  a:hover,
+  a:focus,
+  a:focus-visible {
+    color: var(--color-primary);
+    outline: none;
+  }
+</style>

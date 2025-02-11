@@ -1,6 +1,101 @@
-@import 'tailwindcss';
+/* define layers and order of priority */
+@layer reset, base, theme, components, utilities;
+/* define the sanitize.css file to the reset layer
+@import url(sanitize.css) layer(reset); */
+/* define theme tokens */
+@layer theme {
+  /* @media (min-width: 40rem) { */
+  /* Styles for 640px and up */
+  /* } */
 
-/* Your custom styles */
+  /* @media (min-width: 48rem) { */
+  /* Styles for 768px and up */
+  /* } */
+
+  /* @media (min-width: 64rem) { */
+  /* Styles for 1024px and up */
+  /* } */
+
+  /* @media (min-width: 80rem) { */
+  /* Styles for 1280px and up */
+  /* } */
+
+  /* @media (min-width: 96rem) { */
+  /* Styles for 1536px and up */
+  /* } */
+
+  /* Default (Light Mode) Theme */
+  :root {
+    /* 🎨 Colors */
+    --color-coral: oklch(70.14% 0.1729 33.23);
+    --color-deep-lavender: oklch(70.14% 0.1729 307.06);
+    --color-paper: oklch(95.31% 0.0173 99.6);
+    --color-paper-highlight: oklch(95.31% 0.0173 99.6 / 03%);
+    --color-neutral: oklch(76.55% 0 0);
+    --color-deep-space: oklch(24.35% 0 0);
+    --color-deep-space-highlight: oklch(24.35% 0 0 / 03%);
+    --color-primary: var(--color-coral);
+    --color-secondary: var(--color-deep-lavender);
+    --color-background: var(--color-paper);
+    --color-text: var(--color-deep-space);
+    --color-text-highlight: var(--color-deep-space-highlight);
+    --color-border: var(--color-neutral);
+
+    /* 🏗️ Spacing (8pt grid system) */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+
+    /* 🔠 Typography */
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
+    --font-weight-black: 900;
+
+    /* 🏗️ Border Radius */
+    --radius-xs: 2px;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-full: 999px;
+
+    /* Z Indexes */
+    --layer-base: 0;
+    --layer-1: 100;
+    --layer-2: 200;
+    --layer-3: 300;
+    --layer-4: 400;
+    --layer-5: 500;
+    --layer-6: 600;
+    --layer-7: 700;
+    --layer-8: 800;
+    --layer-9: 900;
+    --layer-top: 1000;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    border-radius: var(--radius-sm);
+    outline-offset: var(--radius-xs);
+  }
+
+  /* 🌙 Dark Mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background: var(--color-deep-space);
+      --color-text: var(--color-paper);
+      --color-text-highlight: var(--color-paper-highlight);
+      --color-border: var(--color-neutral);
+    }
+  }
+}
+/* base fundamental styles */
 @layer base {
   /* poppins-latin-400-normal */
   @font-face {
@@ -40,8 +135,16 @@
   }
   :root {
     font-family: 'Poppins', Helvetica, Arial, sans-serif;
+    text-transform: lowercase;
+    -webkit-font-smoothing: antialiased;
   }
   body {
     min-height: 100vh;
+  }
+  a {
+    color: var(--color-primary);
+  }
+  p {
+    text-transform: none;
   }
 }

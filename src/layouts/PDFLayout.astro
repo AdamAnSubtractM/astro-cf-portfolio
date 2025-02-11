@@ -1,13 +1,13 @@
 ---
-import BaseLayout from './BaseLayout.astro';
+import ThemedLayout from './ThemedLayout.astro';
 ---
 
-<BaseLayout>
+<ThemedLayout>
   <slot name="head" slot="head" />
   <section id="pdf" class="pdf">
     <slot />
   </section>
-</BaseLayout>
+</ThemedLayout>
 
 <style>
   :root {
@@ -18,14 +18,15 @@ import BaseLayout from './BaseLayout.astro';
     --gap-xl: 4em;
     --color-accent: #f2f2f2;
     --border-width: 1px;
-    --border: var(--border-width) solid var(--color-accent);
-    --border-alternate: var(--border-width) dashed var(--color-accent);
-    --size-letter: 794px;
+    --border: var(--border-width) solid var(--color-neutral);
+    --border-alternate: var(--border-width) dashed var(--color-neutral);
+    --size-letter-width: 794px;
+    --size-letter-height: 1123px;
   }
+
   body {
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-between;
     align-items: stretch;
     gap: var(--gap, 1rem);
     font-size: 1rem;
@@ -35,19 +36,38 @@ import BaseLayout from './BaseLayout.astro';
     height: 100%;
     min-height: 100vh;
   }
+  :global(#main-header, #main-footer) {
+    @media print {
+      display: none;
+    }
+  }
+  :global(html, body) {
+    @media print {
+      background-color: white !important;
+      color: black !important;
+    }
+  }
   .pdf {
-    margin: auto;
-    max-width: calc(var(--size-letter) + (2 * var(--gap, 1em)));
+    text-transform: none;
+    margin: var(--gap) auto;
+    max-width: calc(var(--size-letter-width) + (2 * var(--gap, 1em)));
+    min-height: var(--size-letter-height);
     width: 100%;
     padding: var(--gap, 1em);
     display: flex;
     flex-flow: column nowrap;
     font-size: 1em;
+    background-color: var(--color-paper);
+    border: 1px solid var(--color-deep-space);
+    color: var(--color-deep-space);
     @media print {
-      max-width: none;
-      padding: 0;
-      margin: var(--gap, 1em);
-      width: calc(100% - (2 * var(--gap, 1em)));
+      max-width: 100%;
+      min-height: min-content;
+      padding: 0 var(--gap, 1em);
+      width: 100%;
+      background-color: white !important;
+      color: black !important;
+      border: none;
     }
   }
 </style>

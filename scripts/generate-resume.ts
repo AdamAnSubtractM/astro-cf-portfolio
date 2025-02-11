@@ -25,6 +25,8 @@ async function generatePdf() {
   const browser = await chromium.launch();
   const page = await browser.newPage();
 
+  console.log(`Grabbing resume from ${pdfSettings.htmlSource}.`);
+
   const htmlContent = await readFile(pdfSettings.htmlSource, 'utf8');
 
   let fontSize = pdfSettings.defaultFontSize; // Initial font size in em
@@ -35,7 +37,13 @@ async function generatePdf() {
     // Inject the CSS for #resume with the current font size
     const modifiedHtmlContent = `
       <style>
+        :root, html, body {
+          background-color: white;
+          color: black;
+        }
         #pdf {
+          background-color: white;
+          color: black;
           font-size: ${fontSize}em;
         }
       </style>

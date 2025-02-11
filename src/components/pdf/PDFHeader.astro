@@ -71,7 +71,8 @@ const hasContactInfo = hasPrimaryInfo || hasSecpondaryInfo;
     justify-content: space-between;
     align-items: flex-start;
     gap: var(--gap-lg, 2em);
-    background-color: var(--color-accent);
+    background-color: var(--color-deep-space);
+    color: var(--color-paper);
     padding: var(--gap, 1em) var(--gap-lg, 2em);
     > div {
       display: flex;
@@ -114,7 +115,12 @@ const hasContactInfo = hasPrimaryInfo || hasSecpondaryInfo;
     }
   }
   a {
-    color: royalblue;
+    color: var(--color-primary);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
   }
   .logo {
     margin-top: var(--gap, 1em);

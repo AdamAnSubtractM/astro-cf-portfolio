@@ -1,0 +1,22 @@
+---
+import BaseLayout from './BaseLayout.astro';
+---
+
+<BaseLayout>
+  <slot name="head" slot="head" />
+  <section>
+    <slot />
+  </section>
+</BaseLayout>
+
+<style>
+  html,
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+  }
+  section {
+    display: grid;
+    min-height: calc(100dvh - 75px);
+  }
+</style>

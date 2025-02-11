@@ -1,0 +1,41 @@
+---
+interface Props {
+  href?: string;
+  target?: '_self' | '_blank' | '_parent' | '_top'; // Only relevant if href exists
+  class?: string;
+  ariaLabel?: string;
+  title?: string;
+}
+
+const { href, target, title, class: className = '', ariaLabel } = Astro.props;
+---
+
+<a
+  class:list={['icon-button', 'icon-button--link', className]}
+  href={href}
+  target={target}
+  aria-label={ariaLabel}
+  title={title}
+>
+  <slot />
+</a>
+
+<style>
+  :global(.icon-button) {
+    cursor: pointer;
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-sm);
+    border: 1px solid var(--color-text-highlight);
+    border-radius: var(--radius-full);
+    background-color: unset;
+    color: currentColor;
+    &:hover,
+    &:focus {
+      color: var(--color-primary);
+      background-color: var(--color-text-highlight);
+    }
+  }
+</style>

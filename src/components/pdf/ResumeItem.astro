@@ -37,6 +37,9 @@ const { title, subtitle, startdate, enddate, description } = Astro.props;
     &:last-child {
       border-bottom: none;
     }
+    @print {
+      border-color: #f2f2f2;
+    }
   }
   header {
     display: flex;

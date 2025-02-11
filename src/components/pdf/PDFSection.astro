@@ -20,6 +20,9 @@ const { title, includePadding } = Astro.props;
     padding-bottom: var(--gap-sm, 0.5em);
     margin-bottom: 0;
     page-break-after: avoid;
+    @print {
+      border-color: #f2f2f2;
+    }
   }
   section {
     padding: 0 var(--gap, 1em);

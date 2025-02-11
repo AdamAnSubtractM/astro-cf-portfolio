@@ -1,0 +1,66 @@
+<ul class="responsive-menu">
+  <li><a href="/portfolio">Portfolio</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/resume">Resume</a></li>
+  <li><a href="/contact">Contact</a></li>
+</ul>
+
+<style>
+  .responsive-menu {
+    display: none;
+    align-items: center;
+    justify-content: flex-start;
+    flex-flow: column nowrap;
+    gap: var(--space-sm);
+    font-size: var(--font-size-lg);
+    margin: 0;
+    padding: var(--space-lg) var(--space-sm);
+    width: 100%;
+    position: absolute;
+    inset: 75px 0 0 0;
+    z-index: var(--layer-top);
+    min-height: calc(100dvh - 75px);
+    background-color: var(--color-background);
+    li {
+      display: flex;
+      width: 100%;
+    }
+    @media (min-width: 48rem) {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      width: unset;
+      min-height: unset;
+      background-color: unset;
+      position: static;
+      padding: 0;
+      li {
+        display: unset;
+        width: unset;
+      }
+    }
+  }
+  .responsive-menu--open {
+    display: flex;
+  }
+  a {
+    text-decoration: none;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    padding: var(--space-md) calc(var(--space-sm) + var(--space-xs));
+    border-radius: var(--radius-md);
+    background-color: unset;
+    display: block;
+    width: 100%;
+    &:hover,
+    &:focus {
+      color: var(--color-primary);
+      background-color: var(--color-text-highlight);
+    }
+    @media (min-width: 48rem) {
+      display: unset;
+      width: unset;
+      padding: var(--space-xs) calc(var(--space-sm) + var(--space-xs));
+    }
+  }
+</style>
