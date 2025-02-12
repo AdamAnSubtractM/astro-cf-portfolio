@@ -1,7 +1,7 @@
 {
   "name": "astro-cf-portfolio",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -42,7 +42,6 @@
   },
   "engines": {
     "node": "^22.9.0",
-    "pnpm": "^10.2.0"
-  },
-  "packageManager": "pnpm@10.2.0"
+    "pnpm": "^10.3.0"
+  }
 }
