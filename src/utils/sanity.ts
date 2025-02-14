@@ -9,8 +9,9 @@ const client: SanityClient = createClient({
 });
 
 async function getSanityData(query: string) {
-  const resume = await client.fetch(query);
-  return resume;
+  console.log('getSanityData query:', query);
+  const data = await client.fetch(query);
+  return data;
 }
 
 export async function getResume() {
