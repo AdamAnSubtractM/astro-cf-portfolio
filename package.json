@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build && pnpm generate:resume",
-    "preinstall": "pnpm approve-builds",
+    "preinstall": "pnpm approve-builds -g",
     "preview": "astro preview",
     "generate:resume": "node --import=tsx ./scripts/generate-resume.ts",
     "generate:cover-letter": "node --import=tsx ./scripts/generate-cover-letter.ts",
