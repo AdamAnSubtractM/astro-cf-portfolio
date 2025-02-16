@@ -9,7 +9,6 @@ const client: SanityClient = createClient({
 });
 
 async function getSanityData(query: string) {
-  console.log('getSanityData query:', query);
   const data = await client.fetch(query);
   return data;
 }
