@@ -18,5 +18,9 @@ import BaseLayout from './BaseLayout.astro';
   section {
     display: grid;
     min-height: calc(100dvh - 75px);
+    place-items: center;
+    @media print {
+      place-items: unset;
+    }
   }
 </style>
