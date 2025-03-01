@@ -1,5 +1,9 @@
-export default function GithubSVG() {
-  return (
+import { mergeProps, Show } from 'solid-js';
+import type { Component } from 'solid-js';
+
+const Logo: Component<{ isLink?: boolean; styles: CSSModuleClasses }> = (props) => {
+  const mergedProps = mergeProps({ isLink: true }, props);
+  const svg = (
     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 446 82">
       <path
         fill="currentColor"
@@ -27,4 +31,15 @@ export default function GithubSVG() {
       />
     </svg>
   );
-}
+  return (
+    <div class={mergedProps.styles.logo}>
+      <Show when={mergedProps.isLink} fallback={svg}>
+        <a href="/" title="View Adam's home page">
+          {svg}
+        </a>
+      </Show>
+    </div>
+  );
+};
+
+export default Logo;

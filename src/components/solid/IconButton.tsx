@@ -9,7 +9,12 @@ interface IconButtonProps {
 
 export default function IconButton(props: IconButtonProps) {
   return (
-    <button type="button" class="icon-button icon-button--interactive" onClick={props.onClick}>
+    <button
+      type="button"
+      class={props?.class ? `icon-button ${props.class}` : 'icon-button'}
+      title={props.title}
+      onClick={props.onClick}
+    >
       {props.children}
     </button>
   );

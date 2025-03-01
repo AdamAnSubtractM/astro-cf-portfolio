@@ -1,6 +1,7 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
+import BaseHead from '../components/astro/BaseHead.astro';
+import Header from '../components/astro/Header.astro';
+import MainNav from '../components/solid/MainNav';
 
 type Props = {
   title?: string;
@@ -17,7 +18,9 @@ const { title, description, image } = Astro.props;
     <slot name="head" />
   </head>
   <body>
-    <Header />
+    <Header>
+      <MainNav client:load />
+    </Header>
     <slot />
   </body>
 </html>

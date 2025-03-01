@@ -1,7 +1,7 @@
 /* define layers and order of priority */
-@layer reset, base, theme, components, utilities;
-/* define the sanitize.css file to the reset layer
-@import url(sanitize.css) layer(reset); */
+@layer reset, theme, base, components, utilities;
+/* define the sanitize.css file to the reset layer */
+@import url(sanitize.css) layer(reset);
 /* define theme tokens */
 @layer theme {
   /* @media (min-width: 40rem) { */
@@ -24,7 +24,7 @@
   /* Styles for 1536px and up */
   /* } */
 
-  /* Default (Light Mode) Theme */
+  /* Default (Dark Mode) Theme */
   :root {
     /* 🎨 Colors */
     --color-coral: oklch(70.14% 0.1729 33.23);
@@ -78,21 +78,42 @@
     --layer-9: 900;
     --layer-top: 1000;
   }
-
-  :focus-visible {
-    outline: 2px solid var(--color-primary);
-    border-radius: var(--radius-sm);
-    outline-offset: var(--radius-xs);
+  /* LIGHT MODE */
+  :root[data-theme='light'] {
+    --color-background: var(--color-paper);
+    --color-text: var(--color-deep-space);
+    --color-text-highlight: var(--color-deep-space-highlight);
+    --color-border: var(--color-neutral);
   }
 
-  /* 🌙 Dark Mode */
+  /* DARK MODE */
+  :root[data-theme='dark'] {
+    --color-background: var(--color-deep-space);
+    --color-text: var(--color-paper);
+    --color-text-highlight: var(--color-paper-highlight);
+    --color-border: var(--color-neutral);
+  }
+
+  /* SYSTEM MODE: Default to light tokens, but adjust via media query if the system prefers dark */
+  :root[data-theme='system'] {
+    --color-background: var(--color-paper);
+    --color-text: var(--color-deep-space);
+    --color-text-highlight: var(--color-deep-space-highlight);
+    --color-border: var(--color-neutral);
+  }
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root[data-theme='system'] {
       --color-background: var(--color-deep-space);
       --color-text: var(--color-paper);
       --color-text-highlight: var(--color-paper-highlight);
       --color-border: var(--color-neutral);
     }
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    border-radius: var(--radius-sm);
+    outline-offset: var(--radius-xs);
   }
 }
 /* base fundamental styles */
@@ -146,5 +167,29 @@
   }
   p {
     text-transform: none;
+  }
+  .freeze {
+    overflow-y: hidden;
+  }
+  .icon-button {
+    cursor: pointer;
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-sm);
+    border: 1px solid var(--color-text-highlight);
+    border-radius: var(--radius-full);
+    background-color: unset;
+    color: currentColor;
+    &:hover,
+    &:focus {
+      color: var(--color-primary);
+      background-color: var(--color-text-highlight);
+    }
+    &:focus-visible {
+      border: 1px solid var(--color-text-highlight);
+      border-radius: var(--radius-full);
+    }
   }
 }
