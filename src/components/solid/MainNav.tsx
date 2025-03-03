@@ -6,6 +6,7 @@ import GithubSVG from './GithubSVG';
 import SunSVG from './SunSVG';
 import MoonStarSVG from './MoonStarSVG';
 import MonitorSVG from './MonitorSVG';
+import Tooltip from './Tooltip';
 import { createEffect, createSignal, Match, onCleanup, onMount, Show, Switch } from 'solid-js';
 import type { Accessor, Component, Setter } from 'solid-js';
 
@@ -53,6 +54,29 @@ const MainNavControls: Component<{ isMenuOpen: Accessor<boolean>; setIsMenuOpen:
     });
   };
 
+  const getTooltipContent = () => {
+    switch (theme()) {
+      case 'dark':
+        return (
+          <>
+            Current mode is <em>dark</em> mode. Tap to switch to light mode.
+          </>
+        );
+      case 'light':
+        return (
+          <>
+            Current mode is <em>light</em> mode. Tap to switch to system mode.
+          </>
+        );
+      case 'system':
+        return (
+          <>
+            Current mode is <em>system</em> mode. Tap to switch dark mode.
+          </>
+        );
+    }
+  };
+
   // Update document attribute when theme changes
   createEffect(() => {
     document.documentElement.setAttribute('data-theme', theme());
@@ -68,19 +92,21 @@ const MainNavControls: Component<{ isMenuOpen: Accessor<boolean>; setIsMenuOpen:
       >
         <GithubSVG />
       </a>
-      <IconButton onClick={toggleTheme} aria-label="Toggle Theme">
-        <Switch>
-          <Match when={theme() === 'dark'}>
-            <SunSVG />
-          </Match>
-          <Match when={theme() === 'light'}>
-            <MonitorSVG />
-          </Match>
-          <Match when={theme() === 'system'}>
-            <MoonStarSVG />
-          </Match>
-        </Switch>
-      </IconButton>
+      <Tooltip content={getTooltipContent()} placement="top">
+        <IconButton onClick={toggleTheme} aria-label="Toggle Theme">
+          <Switch>
+            <Match when={theme() === 'dark'}>
+              <MoonStarSVG />
+            </Match>
+            <Match when={theme() === 'light'}>
+              <SunSVG />
+            </Match>
+            <Match when={theme() === 'system'}>
+              <MonitorSVG />
+            </Match>
+          </Switch>
+        </IconButton>
+      </Tooltip>
       <IconButton
         class={styles['menu-toggle']}
         onClick={() => props.setIsMenuOpen((prevValue) => !prevValue)}

@@ -168,6 +168,10 @@
   p {
     text-transform: none;
   }
+  em {
+    color: var(--color-secondary);
+    font-style: normal;
+  }
   .freeze {
     overflow-y: hidden;
   }
@@ -191,5 +195,59 @@
       border: 1px solid var(--color-text-highlight);
       border-radius: var(--radius-full);
     }
+  }
+}
+
+@layer components {
+  [data-corvu-tooltip-content] {
+    max-width: 200px;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-neutral);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm);
+  }
+
+  @keyframes enter {
+    from {
+      opacity: var(--tooltip-enter-opacity, 1);
+      transform: translate3d(var(--tooltip-enter-translate-x, 0), var(--tooltip-enter-translate-y, 0), 0)
+        scale3d(var(--tooltip-enter-scale, 1), var(--tooltip-enter-scale, 1), var(--tooltip-enter-scale, 1))
+        rotate(var(--tooltip-enter-rotate, 0));
+    }
+  }
+
+  @keyframes exit {
+    to {
+      opacity: var(--tooltip-exit-opacity, 1);
+      transform: translate3d(var(--tooltip-exit-translate-x, 0), var(--tooltip-exit-translate-y, 0), 0)
+        scale3d(var(--tooltip-exit-scale, 1), var(--tooltip-exit-scale, 1), var(--tooltip-exit-scale, 1))
+        rotate(var(--tooltip-exit-rotate, 0));
+    }
+  }
+
+  [data-corvu-tooltip-content][data-open] {
+    animation-name: enter;
+    animation-duration: 150ms;
+    --tooltip-enter-opacity: initial;
+    --tooltip-enter-scale: initial;
+    --tooltip-enter-rotate: initial;
+    --tooltip-enter-translate-x: initial;
+    --tooltip-enter-translate-y: initial;
+    --tooltip-enter-opacity: 0.5;
+    --tooltip-enter-translate-y: 0.25rem;
+  }
+
+  [data-corvu-tooltip-content][data-closed] {
+    animation-name: exit;
+    animation-duration: 150ms;
+    --tooltip-exit-opacity: initial;
+    --tooltip-exit-scale: initial;
+    --tooltip-exit-rotate: initial;
+    --tooltip-exit-translate-x: initial;
+    --tooltip-exit-translate-y: initial;
+    --tooltip-exit-opacity: 0.5;
+    --tooltip-exit-translate-y: 0.25rem;
   }
 }
