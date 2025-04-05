@@ -39,7 +39,7 @@
   padding: var(--space-lg) var(--space-sm);
   width: 100%;
   position: absolute;
-  inset: 75px 0 0 0;
+  inset: calc(var(--size-height-header) + 1px) 0 0 0;
   z-index: var(--layer-top);
   min-height: calc(100dvh - 75px);
   background-color: var(--color-background-primary);

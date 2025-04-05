@@ -85,8 +85,14 @@ const hasAsideContent = resume?.skills?.length;
     margin: 0;
     padding: 0;
     position: fixed;
-    right: var(--gap, 1rem);
-    bottom: var(--gap, 1rem);
+    z-index: var(--layer-7);
+    right: var(--gap-xl, 2rem);
+    bottom: var(--gap-lg, 2em);
+    @media (min-width: 80rem) {
+      right: var(--gap-xl, 2rem);
+      top: calc(var(--size-height-header) + var(--gap-lg, 2em));
+      bottom: unset;
+    }
     @media print {
       display: none;
     }

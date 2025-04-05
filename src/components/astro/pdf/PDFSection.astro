@@ -20,12 +20,17 @@ const classes = ['section', includePadding && 'padding', isImportant && 'importa
     font-weight: 900;
     font-size: 1.5em;
     border-bottom: var(--border);
-    padding-bottom: var(--gap-sm, 0.5em);
+    padding: var(--gap-sm, 0.5em) 0;
     margin-bottom: 0;
     page-break-after: avoid;
     color: var(--color-secondary-light-gray);
+    background-color: var(--color-background-primary);
+    position: sticky;
+    top: var(--size-height-header);
+    z-index: var(--layer-7);
     @media print {
       color: var(--color-secondary-charcoal-gray);
+      position: unset;
     }
   }
   section {
