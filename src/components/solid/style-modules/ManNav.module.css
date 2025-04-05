@@ -41,7 +41,7 @@
   position: absolute;
   inset: calc(var(--size-height-header) + 1px) 0 0 0;
   z-index: var(--layer-top);
-  min-height: calc(100dvh - 75px);
+  min-height: calc(100dvh - var(--size-height-header) + 1px);
   background-color: var(--color-background-primary);
   ul {
     margin: 0;
