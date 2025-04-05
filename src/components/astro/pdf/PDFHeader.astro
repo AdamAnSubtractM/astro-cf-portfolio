@@ -71,9 +71,11 @@ const hasContactInfo = hasPrimaryInfo || hasSecpondaryInfo;
     justify-content: space-between;
     align-items: flex-start;
     gap: var(--gap-lg, 2em);
-    background-color: var(--color-deep-space);
-    color: var(--color-paper);
-    padding: var(--gap, 1em) var(--gap-lg, 2em);
+    color: var(--color-text-primary);
+    background-color: var(--color-background-primary);
+    border-bottom: 1px solid var(--color-secondary-lavender-gray);
+    padding: var(--gap, 1em) var(--gap-lg, 2em) var(--gap-lg, 2em) var(--gap, 1em);
+    margin: 0;
     > div {
       display: flex;
       flex-flow: column nowrap;
@@ -81,9 +83,13 @@ const hasContactInfo = hasPrimaryInfo || hasSecpondaryInfo;
       align-items: stretch;
       gap: var(--gap-xs, 0.25em);
     }
-    @media all and (min-width: 580px) {
+    @media (min-width: 580px) {
       flex-flow: row nowrap;
       align-items: stretch;
+    }
+    @media print {
+      background-color: var(--color-background-primary) !important;
+      padding: var(--gap, 1em);
     }
   }
   h1,
@@ -92,6 +98,7 @@ const hasContactInfo = hasPrimaryInfo || hasSecpondaryInfo;
     margin: 0;
     padding: 0;
     line-height: 1;
+    color: var(--color-secondary-lavender-gray);
   }
   h1 {
     font-weight: 900;
@@ -109,15 +116,14 @@ const hasContactInfo = hasPrimaryInfo || hasSecpondaryInfo;
     gap: var(--gap-xs, 0.25em);
     height: 100%;
     font-size: 0.9em;
-    @media all and (min-width: 580px) {
+    @media (min-width: 580px) {
       align-items: flex-end;
       text-align: right;
     }
   }
   a {
-    color: var(--color-primary);
+    color: var(--color-cta-celestial-gold);
     font-weight: 700;
-    text-decoration: none;
   }
   a:hover {
     text-decoration: underline;

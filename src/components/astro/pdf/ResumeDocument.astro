@@ -6,6 +6,7 @@ import ResumeSkills from './ResumeSkills.astro';
 import NotFound from '../NotFound.astro';
 import { getResume } from '../../../utils/sanity';
 import { PortableText } from 'astro-portabletext';
+import PrintResumeButton from '../../solid/PrintResumeButton';
 import type { PortableTextBlock } from '@portabletext/types';
 
 type Job = {
@@ -36,7 +37,7 @@ const hasAsideContent = resume?.skills?.length;
             {hasMainContent && (
               <main>
                 {resume?.highlights?.length && (
-                  <PDFSection title="Highlights">
+                  <PDFSection title="Highlights" isImportant>
                     <PortableText value={resume.highlights} />
                   </PDFSection>
                 )}
@@ -65,6 +66,9 @@ const hasAsideContent = resume?.skills?.length;
             )}
           </section>
         )}
+        <section class="print-button">
+          <PrintResumeButton client:load />
+        </section>
       </>
     )
   }
@@ -73,5 +77,18 @@ const hasAsideContent = resume?.skills?.length;
 <style>
   section {
     padding: 0 var(--gap, 1rem);
+    @media print {
+      padding: 0;
+    }
+  }
+  .print-button {
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    right: var(--gap, 1rem);
+    bottom: var(--gap, 1rem);
+    @media print {
+      display: none;
+    }
   }
 </style>

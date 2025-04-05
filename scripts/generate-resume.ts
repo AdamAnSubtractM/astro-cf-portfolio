@@ -2,7 +2,7 @@ import { readFile, writeFile, mkdir } from 'fs/promises';
 import { chromium } from 'playwright-chromium';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import { PDFDocument } from 'pdf-lib'; // Import pdf-lib for post-processing
+import { PDFDocument } from 'pdf-lib';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -34,21 +34,21 @@ async function generatePdf() {
   let finalPdfBuffer;
 
   do {
-    // Inject the CSS for #resume with the current font size
+    // Inject the CSS for  with the current font size
     const modifiedHtmlContent = `
       <style>
-        :root, html, body {
+        :root, html, body, #pdf {
           background-color: white;
-          color: black;
+          color: var(--color-secondary-charcoal-gray);
         }
         #pdf {
-          background-color: white;
-          color: black;
           font-size: ${fontSize}em;
         }
       </style>
       ${htmlContent}
     `;
+
+    console.log('Modified HTML content with font-size:', modifiedHtmlContent);
 
     // Set content with injected CSS and wait for it to load
     await page.setContent(modifiedHtmlContent, { waitUntil: 'networkidle' });
@@ -60,11 +60,12 @@ async function generatePdf() {
     const pdfDoc = await PDFDocument.load(pdfBuffer);
     const pages = pdfDoc.getPages();
 
-    for (let i = 1; i < pages.length; i++) {
-      const page = pages[i];
-      // Shift the content of the page down by the spacer height
-      page.translateContent(0, -pdfSettings.multiPageSpacerHeight);
-    }
+    // for (let i = 1; i < pages.length; i++) {
+    //   const page = pages[i];
+    //   console.log('Shifting page content.');
+    //   // Shift the content of the page down by the spacer height
+    //   page.translateContent(0, -pdfSettings.multiPageSpacerHeight);
+    // }
 
     // Save the updated PDF buffer
     const updatedPdfBuffer = await pdfDoc.save();

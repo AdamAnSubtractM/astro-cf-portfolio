@@ -32,13 +32,13 @@ const { skills } = Astro.props;
     page-break-inside: avoid;
     padding: var(--gap-sm, 0.5em) 0;
     gap: 0;
-    @media all and (min-width: 580px) {
+    @media (min-width: 580px) {
       flex-flow: row wrap;
       gap: var(--gap-sm, 0.5em);
     }
     ul {
       margin: 0;
-      @media all and (min-width: 580px) {
+      @media (min-width: 580px) {
         width: calc(25% - var(--gap-sm, 0.5em));
       }
     }

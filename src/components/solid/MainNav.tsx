@@ -3,11 +3,7 @@ import IconButton from './IconButton';
 import MenuSVG from './MenuSVG';
 import CloseSVG from './CloseSVG';
 import GithubSVG from './GithubSVG';
-import SunSVG from './SunSVG';
-import MoonStarSVG from './MoonStarSVG';
-import MonitorSVG from './MonitorSVG';
-import Tooltip from './Tooltip';
-import { createEffect, createSignal, Match, onCleanup, onMount, Show, Switch } from 'solid-js';
+import { createEffect, createSignal, onCleanup, Show } from 'solid-js';
 import type { Accessor, Component, Setter } from 'solid-js';
 
 import styles from './style-modules/ManNav.module.css';
@@ -34,54 +30,6 @@ const MainNavLinks: Component<{ isMenuOpen: Accessor<boolean> }> = (props) => {
 };
 
 const MainNavControls: Component<{ isMenuOpen: Accessor<boolean>; setIsMenuOpen: Setter<boolean> }> = (props) => {
-  // Initialize with a default theme
-  const [theme, setTheme] = createSignal<'dark' | 'light' | 'system'>('dark');
-
-  // On client mount, read from localStorage if available
-  onMount(() => {
-    const stored = localStorage.getItem('theme');
-    if (stored === 'dark' || stored === 'light' || stored === 'system') {
-      setTheme(stored);
-    }
-  });
-
-  // Toggle through: dark → light → system → dark → …
-  const toggleTheme = () => {
-    setTheme((prev) => {
-      const newTheme = prev === 'dark' ? 'light' : prev === 'light' ? 'system' : 'dark';
-      localStorage.setItem('theme', newTheme); // Store the new theme
-      return newTheme;
-    });
-  };
-
-  const getTooltipContent = () => {
-    switch (theme()) {
-      case 'dark':
-        return (
-          <>
-            Current mode is <em>dark</em> mode. Tap to switch to light mode.
-          </>
-        );
-      case 'light':
-        return (
-          <>
-            Current mode is <em>light</em> mode. Tap to switch to system mode.
-          </>
-        );
-      case 'system':
-        return (
-          <>
-            Current mode is <em>system</em> mode. Tap to switch dark mode.
-          </>
-        );
-    }
-  };
-
-  // Update document attribute when theme changes
-  createEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme());
-  });
-
   return (
     <section class={styles.controls}>
       <a
@@ -92,21 +40,6 @@ const MainNavControls: Component<{ isMenuOpen: Accessor<boolean>; setIsMenuOpen:
       >
         <GithubSVG />
       </a>
-      <Tooltip content={getTooltipContent()} placement="top">
-        <IconButton onClick={toggleTheme} aria-label="Toggle Theme">
-          <Switch>
-            <Match when={theme() === 'dark'}>
-              <MoonStarSVG />
-            </Match>
-            <Match when={theme() === 'light'}>
-              <SunSVG />
-            </Match>
-            <Match when={theme() === 'system'}>
-              <MonitorSVG />
-            </Match>
-          </Switch>
-        </IconButton>
-      </Tooltip>
       <IconButton
         class={styles['menu-toggle']}
         onClick={() => props.setIsMenuOpen((prevValue) => !prevValue)}

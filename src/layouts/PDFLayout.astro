@@ -16,10 +16,8 @@ import ThemedLayout from './ThemedLayout.astro';
     --gap: 1em;
     --gap-lg: 2em;
     --gap-xl: 4em;
-    --color-accent: #f2f2f2;
-    --border-width: 1px;
-    --border: var(--border-width) solid var(--color-neutral);
-    --border-alternate: var(--border-width) dashed var(--color-neutral);
+    --border: 1px solid var(--color-surface-light);
+    --border-alternate: 1px dashed var(--color-surface-light);
     --size-letter-width: 794px;
     --size-letter-height: 1123px;
   }
@@ -44,30 +42,36 @@ import ThemedLayout from './ThemedLayout.astro';
   :global(html, body) {
     @media print {
       background-color: white !important;
-      color: black !important;
+      color: var(--color-secondary-charcoal-gray) !important;
     }
   }
   .pdf {
+    grid-column: 2;
+    display: flex;
+    flex-flow: column nowrap;
     text-transform: none;
+    border: 1px solid var(--color-text-primary);
     margin: var(--gap);
+    padding: var(--gap, 1em);
     width: 100%;
     max-width: calc(var(--size-letter-width) + (2 * var(--gap, 1em)));
     min-height: var(--size-letter-height);
-    padding: var(--gap, 1em);
-    display: flex;
-    flex-flow: column nowrap;
     font-size: 1em;
-    background-color: var(--color-paper);
-    border: 1px solid var(--color-deep-space);
-    color: var(--color-deep-space);
+    gap: var(--gap, 1em);
     @media print {
+      grid-row: 1;
+      grid-column: 2;
+      margin: 0;
+      padding: 0;
       max-width: 100%;
       min-height: min-content;
-      padding: 0 var(--gap, 1em);
       width: 100%;
       background-color: white !important;
-      color: black !important;
       border: none;
+      color: var(--color-secondary-charcoal-gray) !important;
+      a {
+        text-decoration: none !important;
+      }
     }
   }
 </style>

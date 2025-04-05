@@ -37,9 +37,6 @@ const { title, subtitle, startdate, enddate, description } = Astro.props;
     &:last-child {
       border-bottom: none;
     }
-    @media print {
-      border-color: #f2f2f2;
-    }
   }
   header {
     display: flex;
@@ -48,6 +45,7 @@ const { title, subtitle, startdate, enddate, description } = Astro.props;
     align-items: flex-start;
     gap: var(--gap-xs, 0.25em);
   }
+
   h3,
   h4 {
     font-size: 1.12em;
@@ -55,6 +53,12 @@ const { title, subtitle, startdate, enddate, description } = Astro.props;
     margin: 0;
     padding: 0;
     page-break-after: avoid;
+    @media print {
+      color: var(--color-secondary-charcoal-gray) !important;
+    }
+  }
+  h3 {
+    color: var(--color-secondary-light-gray);
   }
   h4 {
     font-weight: normal;

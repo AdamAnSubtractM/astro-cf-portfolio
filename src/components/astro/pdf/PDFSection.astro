@@ -2,12 +2,15 @@
 type Props = {
   title?: string;
   includePadding?: boolean;
+  isImportant?: boolean;
 };
 
-const { title, includePadding } = Astro.props;
+const { title, includePadding, isImportant } = Astro.props;
+
+const classes = ['section', includePadding && 'padding', isImportant && 'important'].filter(Boolean).join(' ');
 ---
 
-<section class={`section ${includePadding ? 'padding' : ''}`}>
+<section class={classes}>
   {title && <h2>{title}</h2>}
   <slot />
 </section>
@@ -20,8 +23,9 @@ const { title, includePadding } = Astro.props;
     padding-bottom: var(--gap-sm, 0.5em);
     margin-bottom: 0;
     page-break-after: avoid;
+    color: var(--color-secondary-light-gray);
     @media print {
-      border-color: #f2f2f2;
+      color: var(--color-secondary-charcoal-gray);
     }
   }
   section {
@@ -34,7 +38,13 @@ const { title, includePadding } = Astro.props;
       margin: 0.5em 0;
     }
   }
-  .padding {
+  section.padding {
     padding: var(--gap, 1em);
+  }
+  section.important {
+    color: var(--color-secondary-light-gray);
+    @media print {
+      color: var(--color-secondary-charcoal-gray);
+    }
   }
 </style>
