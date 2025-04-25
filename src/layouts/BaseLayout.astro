@@ -7,13 +7,12 @@ type Props = {
   title?: string;
   description?: string;
   image?: string;
-  theme?: 'dark' | 'light' | 'system';
 };
 
-const { title, description, image, theme } = Astro.props;
+const { title, description, image } = Astro.props;
 ---
 
-<html lang="en" data-theme={theme}>
+<html lang="en">
   <head>
     <BaseHead title={title} description={description} image={image} />
     <slot name="head" />

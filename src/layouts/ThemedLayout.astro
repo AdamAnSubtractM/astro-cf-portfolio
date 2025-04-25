@@ -1,10 +1,16 @@
 ---
+import StarField from '../components/solid/StarField';
 import BaseLayout from './BaseLayout.astro';
+
+const { backgroundImage } = Astro.props;
+const style = backgroundImage ? `--bg-url: url('${backgroundImage}')` : null;
+const className = backgroundImage ? 'background-image' : null;
 ---
 
-<BaseLayout theme="dark">
+<BaseLayout>
   <slot name="head" slot="head" />
-  <section>
+  <section style={style} class={className}>
+    <StarField />
     <slot />
   </section>
 </BaseLayout>
@@ -25,5 +31,10 @@ import BaseLayout from './BaseLayout.astro';
       display: block;
       padding: var(--gap, 1em);
     }
+  }
+  section.background-image {
+    background-image: var(--bg-url);
+    background-size: cover;
+    background-position: center;
   }
 </style>

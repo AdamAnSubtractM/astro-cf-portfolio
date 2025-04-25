@@ -29,38 +29,104 @@
     --color-primary-dark-purple: #2b1a4a;
     --color-primary-dark-purple: oklch(26.83% 0.0856 296.51);
     --color-primary-dark-purple-10: oklch(26.83% 0.0856 296.51 / 0.1);
+    --color-primary-dark-purple-20: oklch(26.83% 0.0856 296.51 / 0.2);
+    --color-primary-dark-purple-30: oklch(26.83% 0.0856 296.51 / 0.3);
+    --color-primary-dark-purple-40: oklch(26.83% 0.0856 296.51 / 0.4);
+    --color-primary-dark-purple-50: oklch(26.83% 0.0856 296.51 / 0.5);
+    --color-primary-dark-purple-60: oklch(26.83% 0.0856 296.51 / 0.6);
+    --color-primary-dark-purple-70: oklch(26.83% 0.0856 296.51 / 0.7);
+    --color-primary-dark-purple-80: oklch(26.83% 0.0856 296.51 / 0.8);
+    --color-primary-dark-purple-90: oklch(26.83% 0.0856 296.51 / 0.9);
+    --color-primary-dark-purple-98: oklch(26.83% 0.0856 296.51 / 0.98);
 
     /* === Accents === */
     --color-accent-electric-blue: #3abeff;
     --color-accent-electric-blue: oklch(75.6% 0.27 220);
     --color-accent-electric-blue-10: oklch(75.6% 0.27 220 / 0.1);
+    --color-accent-electric-blue-20: oklch(75.6% 0.27 220 / 0.2);
+    --color-accent-electric-blue-30: oklch(75.6% 0.27 220 / 0.3);
+    --color-accent-electric-blue-40: oklch(75.6% 0.27 220 / 0.4);
+    --color-accent-electric-blue-50: oklch(75.6% 0.27 220 / 0.5);
+    --color-accent-electric-blue-60: oklch(75.6% 0.27 220 / 0.6);
+    --color-accent-electric-blue-70: oklch(75.6% 0.27 220 / 0.7);
+    --color-accent-electric-blue-80: oklch(75.6% 0.27 220 / 0.8);
+    --color-accent-electric-blue-90: oklch(75.6% 0.27 220 / 0.9);
 
     --color-accent-soft-magenta: #ff5cab;
     --color-accent-soft-magenta: oklch(71.06% 0.2105 353.83);
     --color-accent-soft-magenta-10: oklch(71.06% 0.2105 353.83/ 0.1);
+    --color-accent-soft-magenta-20: oklch(71.06% 0.2105 353.83 / 0.2);
+    --color-accent-soft-magenta-30: oklch(71.06% 0.2105 353.83 / 0.3);
+    --color-accent-soft-magenta-40: oklch(71.06% 0.2105 353.83 / 0.4);
+    --color-accent-soft-magenta-50: oklch(71.06% 0.2105 353.83 / 0.5);
+    --color-accent-soft-magenta-60: oklch(71.06% 0.2105 353.83 / 0.6);
+    --color-accent-soft-magenta-70: oklch(71.06% 0.2105 353.83 / 0.7);
+    --color-accent-soft-magenta-80: oklch(71.06% 0.2105 353.83 / 0.8);
+    --color-accent-soft-magenta-90: oklch(71.06% 0.2105 353.83 / 0.9);
 
     /* === Supporting / Secondary === */
     --color-secondary-lavender-gray: #a095b7;
     --color-secondary-lavender-gray: oklch(68% 0.05 300);
     --color-secondary-lavender-gray-10: oklch(68% 0.05 300 / 0.1);
+    --color-secondary-lavender-gray-20: oklch(68% 0.05 300 / 0.2);
+    --color-secondary-lavender-gray-30: oklch(68% 0.05 300 / 0.3);
+    --color-secondary-lavender-gray-40: oklch(68% 0.05 300 / 0.4);
+    --color-secondary-lavender-gray-50: oklch(68% 0.05 300 / 0.5);
+    --color-secondary-lavender-gray-60: oklch(68% 0.05 300 / 0.6);
+    --color-secondary-lavender-gray-70: oklch(68% 0.05 300 / 0.7);
+    --color-secondary-lavender-gray-80: oklch(68% 0.05 300 / 0.8);
+    --color-secondary-lavender-gray-90: oklch(68% 0.05 300 / 0.9);
 
     --color-secondary-light-gray: rgb(10, 5, 5);
     --color-secondary-light-gray: oklch(85.5% 0.01 270);
     --color-secondary-light-gray-10: oklch(85.5% 0.01 270 / 0.1);
+    --color-secondary-light-gray-10: oklch(85.5% 0.01 270 / 0.1);
+    --color-secondary-light-gray-20: oklch(85.5% 0.01 270 / 0.2);
+    --color-secondary-light-gray-30: oklch(85.5% 0.01 270 / 0.3);
+    --color-secondary-light-gray-40: oklch(85.5% 0.01 270 / 0.4);
+    --color-secondary-light-gray-50: oklch(85.5% 0.01 270 / 0.5);
+    --color-secondary-light-gray-60: oklch(85.5% 0.01 270 / 0.6);
+    --color-secondary-light-gray-70: oklch(85.5% 0.01 270 / 0.7);
+    --color-secondary-light-gray-80: oklch(85.5% 0.01 270 / 0.8);
+    --color-secondary-light-gray-90: oklch(85.5% 0.01 270 / 0.9);
 
     --color-secondary-charcoal-gray: #1d1b27;
     --color-secondary-charcoal-gray: oklch(20.7% 0.01 280);
     --color-secondary-charcoal-gray-10: oklch(20.7% 0.01 280 / 0.1);
+    --color-secondary-charcoal-gray-20: oklch(20.7% 0.01 280 / 0.2);
+    --color-secondary-charcoal-gray-30: oklch(20.7% 0.01 280 / 0.3);
+    --color-secondary-charcoal-gray-40: oklch(20.7% 0.01 280 / 0.4);
+    --color-secondary-charcoal-gray-50: oklch(20.7% 0.01 280 / 0.5);
+    --color-secondary-charcoal-gray-60: oklch(20.7% 0.01 280 / 0.6);
+    --color-secondary-charcoal-gray-70: oklch(20.7% 0.01 280 / 0.7);
+    --color-secondary-charcoal-gray-80: oklch(20.7% 0.01 280 / 0.8);
+    --color-secondary-charcoal-gray-90: oklch(20.7% 0.01 280 / 0.9);
 
     /* === CTA / Highlight === */
     --color-cta-celestial-gold: #ffd85c;
     --color-cta-celestial-gold: oklch(89.29% 0.1465 91.62);
     --color-cta-celestial-gold-10: oklch(89.29% 0.1465 91.62 / 0.1);
+    --color-cta-celestial-gold-20: oklch(89.29% 0.1465 91.62 / 0.2);
+    --color-cta-celestial-gold-30: oklch(89.29% 0.1465 91.62 / 0.3);
+    --color-cta-celestial-gold-40: oklch(89.29% 0.1465 91.62 / 0.4);
+    --color-cta-celestial-gold-50: oklch(89.29% 0.1465 91.62 / 0.5);
+    --color-cta-celestial-gold-60: oklch(89.29% 0.1465 91.62 / 0.6);
+    --color-cta-celestial-gold-70: oklch(89.29% 0.1465 91.62 / 0.7);
+    --color-cta-celestial-gold-80: oklch(89.29% 0.1465 91.62 / 0.8);
+    --color-cta-celestial-gold-90: oklch(89.29% 0.1465 91.62 / 0.9);
 
     /* === Optional Accent === */
     --color-accent-deep-teal: #197b82;
     --color-accent-deep-teal: oklch(53.35% 0.0846 202.39);
     --color-accent-deep-teal-10: oklch(53.35% 0.0846 202.39 / 0.1);
+    --color-accent-deep-teal-20: oklch(53.35% 0.0846 202.39 / 0.2);
+    --color-accent-deep-teal-30: oklch(53.35% 0.0846 202.39 / 0.3);
+    --color-accent-deep-teal-40: oklch(53.35% 0.0846 202.39 / 0.4);
+    --color-accent-deep-teal-50: oklch(53.35% 0.0846 202.39 / 0.5);
+    --color-accent-deep-teal-60: oklch(53.35% 0.0846 202.39 / 0.6);
+    --color-accent-deep-teal-70: oklch(53.35% 0.0846 202.39 / 0.7);
+    --color-accent-deep-teal-80: oklch(53.35% 0.0846 202.39 / 0.8);
+    --color-accent-deep-teal-90: oklch(53.35% 0.0846 202.39 / 0.9);
 
     /* Example text/background tokens */
     --color-text-primary: var(--color-secondary-lavender-gray);
@@ -93,6 +159,7 @@
     --radius-full: 999px;
 
     /* Z Indexes */
+    --layer-background: -1;
     --layer-base: 0;
     --layer-1: 100;
     --layer-2: 200;
@@ -109,6 +176,7 @@
     --size-width-border-sm: 1px;
     --size-width-border-md: 2px;
     --size-width-border-lg: 3px;
+    --size-width-content: 1200px;
     @media (min-width: 48rem) {
       --size-height-header: 75px;
     }

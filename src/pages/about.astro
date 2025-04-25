@@ -2,6 +2,67 @@
 import ThemedLayout from '../layouts/ThemedLayout.astro';
 ---
 
-<ThemedLayout title="About Me" description="Learn more about Adam Knee">
-  <main></main>
+<ThemedLayout title="About Me" description="Learn more about Adam Knee" backgroundImage="/about-me-bg.png">
+  <main>
+    <section>
+      <article>
+        <h2>About Me</h2>
+        <p>
+          Hi, I’m Adam — a software engineer based in Pittsburgh, PA with over 8 years of experience building modern,
+          user-focused web applications. I thrive at the intersection of thoughtful design and scalable architecture,
+          and I’m always excited to solve new challenges with clean, efficient code.
+        </p>
+        <p>
+          Outside of work, you’ll most likely find me hiking deep into the woods with my German Shepherd, Nala,
+          practicing karate, or getting lost in a good fantasy book. I’m a huge fan of the <em>Red Rising</em> saga, <em
+            >The Cosmere Universe</em
+          >, and <em>The Kingkiller Chronicle</em>. (Ask me about my favorite moments — I’ve got opinions.)
+        </p>
+        <p>
+          Whether I’m building software or hitting the trail, I bring the same passion, focus, and curiosity to
+          everything I do.
+        </p>
+      </article>
+      <!-- <div class="media">
+        <img src="/about-me-bg.png" alt="Adam and his Gemrman Shepherd, Nala, out in their natural habitat." />
+      </div> -->
+    </section>
+  </main>
 </ThemedLayout>
+
+<style>
+  main {
+    grid-column: 2 / span 1;
+  }
+  section {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: column nowrap;
+    gap: var(--space-md);
+    max-width: var(--size-width-content);
+    .media {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .media img {
+      max-width: calc(var(--size-width-content) / 2);
+      width: 100%;
+    }
+    @media (min-width: 64rem) {
+      flex-flow: row nowrap;
+      .media {
+        justify-content: flex-end;
+      }
+    }
+  }
+  article {
+    background: rgba(43, 26, 74, 0.4); /* Brand purple w/ transparency */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    max-width: 600px;
+  }
+</style>
