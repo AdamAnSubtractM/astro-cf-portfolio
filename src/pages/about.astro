@@ -1,5 +1,6 @@
 ---
 import ThemedLayout from '../layouts/ThemedLayout.astro';
+import MeNalaSVG from '../components/solid/MeNalaSVG';
 ---
 
 <ThemedLayout title="About Me" description="Learn more about Adam Knee" backgroundImage="/about-me-bg.png">
@@ -23,9 +24,9 @@ import ThemedLayout from '../layouts/ThemedLayout.astro';
           everything I do.
         </p>
       </article>
-      <!-- <div class="media">
-        <img src="/about-me-bg.png" alt="Adam and his Gemrman Shepherd, Nala, out in their natural habitat." />
-      </div> -->
+      <div class="media">
+        <MeNalaSVG />
+      </div>
     </section>
   </main>
 </ThemedLayout>
@@ -44,11 +45,11 @@ import ThemedLayout from '../layouts/ThemedLayout.astro';
       display: flex;
       justify-content: center;
       align-items: center;
+      svg {
+        width: 600px;
+      }
     }
-    .media img {
-      max-width: calc(var(--size-width-content) / 2);
-      width: 100%;
-    }
+
     @media (min-width: 64rem) {
       flex-flow: row nowrap;
       .media {
