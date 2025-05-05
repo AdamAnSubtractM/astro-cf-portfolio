@@ -1,9 +1,13 @@
 ---
 import ThemedLayout from '../layouts/ThemedLayout.astro';
-import MeNalaSVG from '../components/solid/MeNalaSVG';
 ---
 
-<ThemedLayout title="About Me" description="Learn more about Adam Knee" backgroundImage="/about-me-bg.png">
+<ThemedLayout
+  title="About Me"
+  description="Learn more about Adam Knee"
+  backgroundImage="/me-nala-about-me-bg.png"
+  excludeStarField
+>
   <main>
     <section>
       <article>
@@ -15,55 +19,52 @@ import MeNalaSVG from '../components/solid/MeNalaSVG';
         </p>
         <p>
           Outside of work, you’ll most likely find me hiking deep into the woods with my German Shepherd, Nala,
-          practicing karate, or getting lost in a good fantasy book. I’m a huge fan of the <em>Red Rising</em> saga, <em
-            >The Cosmere Universe</em
-          >, and <em>The Kingkiller Chronicle</em>. (Ask me about my favorite moments — I’ve got opinions.)
+          practicing karate, or getting lost in a good fantasy book. I’m a huge fan of the <a
+            href="https://www.goodreads.com/series/117100-red-rising-saga"
+            rel="noreffer nofollow"
+            target="_blank">Red Rising</a
+          > saga, <a href="https://www.goodreads.com/series/135117-the-cosmere" rel="noreffer nofollow" target="_blank"
+            >The Cosmere Universe</a
+          >, and <a
+            href="https://www.goodreads.com/series/45262-the-kingkiller-chronicle"
+            rel="noreffer nofollow"
+            target="_blank">The Kingkiller Chronicle</a
+          >. (Ask me about my favorite moments — I’ve got opinions.)
         </p>
         <p>
           Whether I’m building software or hitting the trail, I bring the same passion, focus, and curiosity to
           everything I do.
         </p>
       </article>
-      <div class="media">
-        <MeNalaSVG />
-      </div>
     </section>
   </main>
 </ThemedLayout>
 
 <style>
   main {
-    grid-column: 2 / span 1;
+    max-width: var(--size-width-content);
+    width: 100%;
   }
   section {
     display: flex;
     justify-content: space-between;
     flex-flow: column nowrap;
-    gap: var(--space-md);
-    max-width: var(--size-width-content);
-    .media {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      svg {
-        width: 600px;
-      }
-    }
-
+    gap: var(--space-md) var;
     @media (min-width: 64rem) {
       flex-flow: row nowrap;
-      .media {
-        justify-content: flex-end;
-      }
     }
   }
   article {
-    background: rgba(43, 26, 74, 0.4); /* Brand purple w/ transparency */
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(43, 26, 74, 0.2); /* Brand purple w/ transparency */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-radius: 1rem;
-    padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    max-width: 600px;
+    padding: var(--space-xl);
+    max-width: 580px;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: var(--layer-1);
   }
 </style>

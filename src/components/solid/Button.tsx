@@ -26,7 +26,7 @@ const Button: Component<ButtonProps> = (props) => {
   // Render as an anchor if href is provided, otherwise as a button
   if (local.href) {
     return (
-      <a {...others} href={local.href} class={classNames}>
+      <a {...others} href={local.href} class={`button ${classNames}`}>
         {local.children}
       </a>
     );

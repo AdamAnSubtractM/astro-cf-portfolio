@@ -1,7 +1,6 @@
 ---
 import ThemedLayout from '../layouts/ThemedLayout.astro';
 import Button from '../components/solid/Button';
-import StarField from '../components/solid/StarField';
 ---
 
 <ThemedLayout>
@@ -10,7 +9,7 @@ import StarField from '../components/solid/StarField';
       <h1>Hey, <em>I'm Adam Knee</em>.</h1>
       <h2>
         I'm an <a href="/resume">experienced software developer</a> who builds
-        <a href="/portfolio">cool stuff</a> that is out of this world.
+        <a href="/portfolio">cool stuff</a> that is out&nbsp;of&nbsp;this&nbsp;world.
       </h2>
       <div>
         <Button href="/portfolio">view portfolio</Button>
@@ -211,38 +210,46 @@ import StarField from '../components/solid/StarField';
     padding: 0;
   }
   h1 {
-    font-size: clamp(2.85rem, 8vw, 6rem);
+    font-size: clamp(2.85rem, 14vw, 7rem);
     font-weight: var(--font-weight-black);
     margin: var(--space-lg) 0;
     text-wrap: balance;
     line-height: 1.2;
+    @media (min-width: 64rem) {
+      font-size: clamp(3.5rem, 8vw, 6rem);
+    }
   }
   h2 {
-    font-size: clamp(1.25rem, 2vw, 3rem);
+    font-size: clamp(1.25rem, 4vw, 2rem);
     font-weight: var(--font-weight-normal);
     margin: var(--space-lg) 0;
   }
   main {
-    grid-column: 2 / span 1;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    gap: var(--space-md);
+    width: 100%;
+    max-width: var(--size-width-content);
     @media (min-width: 64rem) {
-      display: flex;
+      flex-flow: row nowrap;
       justify-content: space-between;
-      align-items: center;
-      gap: var(--space-md);
     }
   }
   section {
-    margin: var(--space-xl) 0;
-    padding: var(--space-lg) 0;
+    width: 100%;
   }
   section > svg {
     display: flex;
     justify-content: center;
     align-items: center;
     min-width: 300px;
-    max-width: 800px;
+    max-width: 600px;
     width: 80%;
+    height: auto;
     margin: auto;
+    /* transform: translate(-50%, -50%); */
+    animation: float 6s ease-in-out infinite;
     @media (min-width: 64rem) {
       min-width: 420px;
     }

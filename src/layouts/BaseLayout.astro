@@ -7,9 +7,12 @@ type Props = {
   title?: string;
   description?: string;
   image?: string;
+  backgroundImage?: string;
 };
 
-const { title, description, image } = Astro.props;
+const { title, description, image, backgroundImage } = Astro.props;
+const style = backgroundImage ? `--bg-url: url('${backgroundImage}')` : null;
+const className = backgroundImage ? 'background-image' : null;
 ---
 
 <html lang="en">
@@ -17,10 +20,22 @@ const { title, description, image } = Astro.props;
     <BaseHead title={title} description={description} image={image} />
     <slot name="head" />
   </head>
-  <body>
+  <body style={style} class={className}>
     <Header>
       <MainNav client:load />
     </Header>
     <slot />
   </body>
 </html>
+
+<style>
+  body.background-image {
+    background-image: var(--bg-url);
+    background-size: cover;
+    background-position: center;
+    @media (min-width: 96rem) {
+      background-position: top left;
+      background-size: 100%;
+    }
+  }
+</style>

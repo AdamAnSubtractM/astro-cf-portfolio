@@ -176,7 +176,7 @@
     --size-width-border-sm: 1px;
     --size-width-border-md: 2px;
     --size-width-border-lg: 3px;
-    --size-width-content: 1200px;
+    --size-width-content: 80rem;
     @media (min-width: 48rem) {
       --size-height-header: 75px;
     }
@@ -251,6 +251,28 @@
       text-decoration-style: dotted;
     }
   }
+  a[target='_blank'] {
+    position: relative; /* to make sure the pseudo-element sits nicely */
+  }
+
+  a[target='_blank']:not(.icon-button, .button)::after {
+    content: '';
+    display: inline-block;
+    width: 0.85em;
+    height: 0.85em;
+    margin-left: 0.15em;
+    vertical-align: middle !important;
+    background-color: currentColor;
+    -webkit-mask: url('/rocket.svg') no-repeat center;
+    -webkit-mask-size: contain;
+    mask: url('/rocket.svg') no-repeat center;
+    mask-size: contain;
+    @media print {
+      mask: unset;
+      display: none;
+    }
+  }
+
   p {
     text-transform: none;
   }
@@ -335,5 +357,19 @@
     --tooltip-exit-translate-y: initial;
     --tooltip-exit-opacity: 0.5;
     --tooltip-exit-translate-y: 0.25rem;
+  }
+}
+
+@layer utilities {
+  @keyframes float {
+    0% {
+      transform: translateY(-2%) rotate(0deg);
+    }
+    50% {
+      transform: translateY(2%) rotate(1.5deg);
+    }
+    100% {
+      transform: translateY(-2%) rotate(0deg);
+    }
   }
 }

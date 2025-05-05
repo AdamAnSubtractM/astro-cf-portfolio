@@ -2,15 +2,14 @@
 import StarField from '../components/solid/StarField';
 import BaseLayout from './BaseLayout.astro';
 
-const { backgroundImage } = Astro.props;
-const style = backgroundImage ? `--bg-url: url('${backgroundImage}')` : null;
-const className = backgroundImage ? 'background-image' : null;
+const { backgroundImage, alignItems, excludeStarField } = Astro.props;
+const style = `--alignItems: ${alignItems || 'center'}`;
 ---
 
-<BaseLayout>
+<BaseLayout backgroundImage={backgroundImage}>
   <slot name="head" slot="head" />
-  <section style={style} class={className}>
-    <StarField />
+  <section style={style}>
+    {!excludeStarField && <StarField />}
     <slot />
   </section>
 </BaseLayout>
@@ -22,19 +21,15 @@ const className = backgroundImage ? 'background-image' : null;
     color: var(--color-text-primary);
   }
   section {
-    display: grid;
+    display: flex;
+    align-items: var(--alignItems, center);
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
     min-height: calc(100dvh - var(--size-height-header) + var(--size-width-border-sm));
-    place-items: center;
-    grid-template-columns: minmax(var(--space-md), 1fr) minmax(0, 96rem) minmax(var(--space-md), 1fr);
-    grid-template-rows: 1fr 1px auto 1px auto;
     @media print {
       display: block;
       padding: var(--gap, 1em);
     }
-  }
-  section.background-image {
-    background-image: var(--bg-url);
-    background-size: cover;
-    background-position: center;
   }
 </style>
