@@ -9,6 +9,10 @@
   -webkit-font-smoothing: antialiased;
 }
 
+.base:focus-visible {
+  outline: var(--size-width-border-md) solid var(--color-accent-soft-magenta);
+}
+
 /* Primary variant styles */
 .primary {
   background-color: var(--color-cta-celestial-gold);
@@ -17,7 +21,6 @@
 }
 
 .primary:hover {
-  /* background-color: var(--color-surface-light); */
   background-color: var(--color-accent-electric-blue);
 }
 

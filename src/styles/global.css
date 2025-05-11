@@ -4,6 +4,9 @@
 @import url(sanitize.css) layer(reset);
 /* define theme tokens */
 @layer theme {
+  /* @media (min-width: 30rem) { */
+  /* Styles for 480px and up */
+  /* } */
   /* @media (min-width: 40rem) { */
   /* Styles for 640px and up */
   /* } */
@@ -80,7 +83,7 @@
     --color-secondary-light-gray: rgb(10, 5, 5);
     --color-secondary-light-gray: oklch(85.5% 0.01 270);
     --color-secondary-light-gray-10: oklch(85.5% 0.01 270 / 0.1);
-    --color-secondary-light-gray-10: oklch(85.5% 0.01 270 / 0.1);
+    --color-secondary-light-gray-15: oklch(85.5% 0.01 270 / 0.15);
     --color-secondary-light-gray-20: oklch(85.5% 0.01 270 / 0.2);
     --color-secondary-light-gray-30: oklch(85.5% 0.01 270 / 0.3);
     --color-secondary-light-gray-40: oklch(85.5% 0.01 270 / 0.4);
@@ -147,6 +150,7 @@
     --font-size-md: 1rem;
     --font-size-lg: 1.25rem;
     --font-size-xl: 1.5rem;
+    --font-size-2xl: 2.25rem;
     --font-weight-normal: 400;
     --font-weight-bold: 700;
     --font-weight-black: 900;
@@ -242,6 +246,11 @@
   body {
     min-height: 100vh;
   }
+  h1 {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+  }
   a {
     color: var(--color-cta-celestial-gold);
     &:hover,
@@ -255,11 +264,12 @@
     position: relative; /* to make sure the pseudo-element sits nicely */
   }
 
-  a[target='_blank']:not(.icon-button, .button)::after {
+  a[target='_blank']:not(.icon-button)::after {
+    --size: 0.85em;
     content: '';
-    display: inline-block;
-    width: 0.85em;
-    height: 0.85em;
+    display: inline-flex;
+    width: var(--size);
+    height: var(--size);
     margin-left: 0.15em;
     vertical-align: middle !important;
     background-color: currentColor;
@@ -267,10 +277,15 @@
     -webkit-mask-size: contain;
     mask: url('/rocket.svg') no-repeat center;
     mask-size: contain;
+    align-self: center;
     @media print {
       mask: unset;
       display: none;
     }
+  }
+
+  a.button[target='_blank']:not(.icon-button)::after {
+    --size: 1em;
   }
 
   p {
@@ -304,60 +319,19 @@
       border-radius: var(--radius-full);
     }
   }
+  .icon-button--large {
+    &:focus-visible {
+      border-radius: var(--radius-lg);
+    }
+  }
+  .icon-button[disabled],
+  .icon-button.icon-button--disabled {
+    cursor: not-allowed !important;
+    color: var(--color-secondary-lavender-gray-50);
+  }
 }
-/* TODO - Revisit Styles */
+
 @layer components {
-  [data-corvu-tooltip-content] {
-    max-width: 200px;
-    /* background-color: var(--color-background-primary);
-    border: 1px solid var(--color-surface-light); */
-    border-radius: var(--radius-md);
-    padding: var(--space-sm) var(--space-md);
-    font-weight: var(--font-weight-bold);
-    font-size: var(--font-size-sm);
-  }
-
-  @keyframes enter {
-    from {
-      opacity: var(--tooltip-enter-opacity, 1);
-      transform: translate3d(var(--tooltip-enter-translate-x, 0), var(--tooltip-enter-translate-y, 0), 0)
-        scale3d(var(--tooltip-enter-scale, 1), var(--tooltip-enter-scale, 1), var(--tooltip-enter-scale, 1))
-        rotate(var(--tooltip-enter-rotate, 0));
-    }
-  }
-
-  @keyframes exit {
-    to {
-      opacity: var(--tooltip-exit-opacity, 1);
-      transform: translate3d(var(--tooltip-exit-translate-x, 0), var(--tooltip-exit-translate-y, 0), 0)
-        scale3d(var(--tooltip-exit-scale, 1), var(--tooltip-exit-scale, 1), var(--tooltip-exit-scale, 1))
-        rotate(var(--tooltip-exit-rotate, 0));
-    }
-  }
-
-  [data-corvu-tooltip-content][data-open] {
-    animation-name: enter;
-    animation-duration: 150ms;
-    --tooltip-enter-opacity: initial;
-    --tooltip-enter-scale: initial;
-    --tooltip-enter-rotate: initial;
-    --tooltip-enter-translate-x: initial;
-    --tooltip-enter-translate-y: initial;
-    --tooltip-enter-opacity: 0.5;
-    --tooltip-enter-translate-y: 0.25rem;
-  }
-
-  [data-corvu-tooltip-content][data-closed] {
-    animation-name: exit;
-    animation-duration: 150ms;
-    --tooltip-exit-opacity: initial;
-    --tooltip-exit-scale: initial;
-    --tooltip-exit-rotate: initial;
-    --tooltip-exit-translate-x: initial;
-    --tooltip-exit-translate-y: initial;
-    --tooltip-exit-opacity: 0.5;
-    --tooltip-exit-translate-y: 0.25rem;
-  }
 }
 
 @layer utilities {

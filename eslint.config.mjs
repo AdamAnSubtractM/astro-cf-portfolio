@@ -7,6 +7,6 @@ export default [
   eslintConfigPrettier,
   eslintPluginPrettierRecommended,
   {
-    files: ['./src/**', './scripts/**']
+    files: ['./src/**/**', './scripts/**']
   }
 ];

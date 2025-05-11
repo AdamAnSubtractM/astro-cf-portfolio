@@ -1,17 +1,18 @@
 ---
 import ThemedLayout from '../layouts/ThemedLayout.astro';
+import BlurredCard from '../components/astro/BlurredCard.astro';
 ---
 
 <ThemedLayout
   title="About Me"
   description="Learn more about Adam Knee"
-  backgroundImage="/me-nala-about-me-bg.png"
+  backgroundImage="/me-nala-about-me-bg-optimized.jpg"
   excludeStarField
 >
   <main>
     <section>
-      <article>
-        <h2>About Me</h2>
+      <BlurredCard>
+        <h1>About Me</h1>
         <p>
           Hi, I’m Adam — a software engineer based in Pittsburgh, PA with over 8 years of experience building modern,
           user-focused web applications. I thrive at the intersection of thoughtful design and scalable architecture,
@@ -35,7 +36,7 @@ import ThemedLayout from '../layouts/ThemedLayout.astro';
           Whether I’m building software or hitting the trail, I bring the same passion, focus, and curiosity to
           everything I do.
         </p>
-      </article>
+      </BlurredCard>
     </section>
   </main>
 </ThemedLayout>
@@ -53,18 +54,5 @@ import ThemedLayout from '../layouts/ThemedLayout.astro';
     @media (min-width: 64rem) {
       flex-flow: row nowrap;
     }
-  }
-  article {
-    border-radius: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: rgba(43, 26, 74, 0.2); /* Brand purple w/ transparency */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: var(--space-xl);
-    max-width: 580px;
-    width: 100%;
-    box-sizing: border-box;
-    position: relative;
-    z-index: var(--layer-1);
   }
 </style>

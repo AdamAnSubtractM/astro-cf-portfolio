@@ -46,11 +46,11 @@ import ThemedLayout from './ThemedLayout.astro';
     }
   }
   .pdf {
-    grid-column: 2;
     display: flex;
     flex-flow: column nowrap;
     text-transform: none;
     border: 1px solid var(--color-text-primary);
+    border-radius: var(--radius-md);
     margin: var(--gap);
     padding: var(--gap, 1em);
     width: 100%;
@@ -59,8 +59,6 @@ import ThemedLayout from './ThemedLayout.astro';
     font-size: 1em;
     gap: var(--gap-xs, 0.25em);
     @media print {
-      grid-row: 1;
-      grid-column: 2;
       margin: 0;
       padding: 0;
       max-width: 100%;
@@ -68,6 +66,7 @@ import ThemedLayout from './ThemedLayout.astro';
       width: 100%;
       background-color: white !important;
       border: none;
+      border-radius: unset;
       color: var(--color-secondary-charcoal-gray) !important;
       a {
         text-decoration: none !important;

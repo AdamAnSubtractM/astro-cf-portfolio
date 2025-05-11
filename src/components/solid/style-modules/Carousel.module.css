@@ -1,0 +1,61 @@
+.carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.viewport {
+  overflow: hidden;
+  width: 100%;
+  padding: var(--space-sm) 4px;
+}
+
+.container {
+  display: flex;
+  gap: var(--space-md);
+}
+
+/* show 3 slides at a time */
+.slide {
+  flex: 0 0 calc(100% - var(--space-md));
+  min-width: 0;
+  @media (min-width: 30rem) {
+    flex: 0 0 calc(100% / 2 - var(--space-md));
+  }
+  @media (min-width: 48rem) {
+    flex: 0 0 calc(100% / 3 - var(--space-md) * 2);
+  }
+}
+
+.prev,
+.next {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 1;
+  margin: var(--space-sm) 4px;
+}
+
+.next {
+  transform: rotate(180deg);
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background: #ccc;
+  border: none;
+  cursor: pointer;
+}
+
+.isSelected {
+  background: #333;
+}

@@ -1,7 +1,149 @@
 ---
 import ThemedLayout from '../layouts/ThemedLayout.astro';
+import BlurredCard from '../components/astro/BlurredCard.astro';
+import GithubSVG from '../components/solid/GithubSVG';
+import PortfolioCarousel from '../components/solid/PortfolioCarousel';
+import Button from '../components/solid/Button';
+import type { EmblaOptionsType } from 'embla-carousel';
+
+const slides = [
+  {
+    title: 'Project 1',
+    description: 'Description of Project 1',
+    imageUrl: 'https://placehold.co/400x600/000000/FFFFFF/png',
+    link: '#'
+  },
+  {
+    title: 'Project 2',
+    description: 'Description of Project 2',
+    imageUrl: 'https://placehold.co/400x600/000000/FFFFFF/png',
+    link: '#'
+  },
+  {
+    title: 'Project 3',
+    description: 'Description of Project 3',
+    imageUrl: 'https://placehold.co/400x600/000000/FFFFFF/png',
+    link: '#'
+  },
+  {
+    title: 'Project 4',
+    description: 'Description of Project 4',
+    imageUrl: 'https://placehold.co/400x600/000000/FFFFFF/png',
+    link: '#'
+  },
+  {
+    title: 'Project 5',
+    description: 'Description of Project 5',
+    imageUrl: 'https://placehold.co/400x600/000000/FFFFFF/png',
+    link: '#'
+  },
+  {
+    title: 'Project 6',
+    description: 'Description of Project 6',
+    imageUrl: 'https://placehold.co/400x600/000000/FFFFFF/png',
+    link: '#'
+  }
+];
+
+const options: EmblaOptionsType = {
+  breakpoints: {
+    '(min-width: 30rem)': {
+      slidesToScroll: 2
+    },
+    '(min-width: 48rem)': {
+      slidesToScroll: 3
+    }
+  }
+};
 ---
 
 <ThemedLayout title="My Portfolio" description="A showcase of Adam Knee's work">
-  <main></main>
+  <main>
+    <h1>My Portfolio</h1>
+    <BlurredCard style="max-width: 100%;">
+      <section>
+        <div class="github-logo">
+          <a
+            class="icon-button icon-button--large"
+            href="https://github.com/AdamAnSubtractM"
+            target="_blank"
+            title="View Adam's GitHub profile"
+          >
+            <GithubSVG />
+          </a>
+        </div>
+        <div class="github-section">
+          <h4>Check out my GitHub for a collection of my projects and contributions</h4>
+          <p>
+            Feel free to explore my recent contributions—while many of my repositories are private due to my
+            professional work, you can still see all of my activity and public commits on my GitHub profile. I’m also
+            happy to discuss any of my private projects upon request.
+          </p>
+          <Button href="https://github.com/AdamAnSubtractM" target="_blank">View GitHub</Button>
+        </div>
+      </section>
+    </BlurredCard>
+    <BlurredCard style="max-width: 100%;">
+      <article>
+        <h2>Showcase</h2>
+        <p>Drag the carousel or use the navigation arrows to see featured projects.</p>
+        <PortfolioCarousel slides={slides} options={options} client:load />
+      </article>
+    </BlurredCard>
+  </main>
 </ThemedLayout>
+
+<style>
+  main {
+    max-width: var(--size-width-content);
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--space-md);
+  }
+
+  h1 {
+    margin: 0;
+  }
+  section {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: column nowrap;
+    align-items: center;
+    @media (min-width: 48rem) {
+      flex-flow: row nowrap;
+    }
+  }
+  section > div {
+    padding: 0 var(--space-sm);
+  }
+
+  article h2 {
+    margin-bottom: 0;
+  }
+
+  .github-section {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-md);
+    h4,
+    p,
+    a {
+      margin: 0;
+    }
+  }
+
+  :global(.github-logo svg) {
+    --size: 100px;
+    width: var(--size);
+    height: var(--size);
+    @media (min-width: 48rem) {
+      --size: 200px;
+    }
+    @media (min-width: 64rem) {
+      --size: 180px;
+    }
+  }
+</style>

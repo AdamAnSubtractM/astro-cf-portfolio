@@ -1,0 +1,23 @@
+<article style={Astro.props.style}>
+  <slot />
+</article>
+
+<style>
+  article {
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-secondary-light-gray-15);
+    background: var(--color-primary-dark-purple-20);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: var(--space-md);
+    max-width: var(--max-width, 580px);
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: var(--layer-1);
+    font-size: var(--font-size-md);
+    @media (min-width: 48rem) {
+      padding: var(--space-xl);
+    }
+  }
+</style>

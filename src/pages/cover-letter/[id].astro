@@ -18,51 +18,52 @@ const coverLetter = await getCoverLetter(id!);
 Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow');
 ---
 
-{!coverLetter && <NotFound />}
-{
-  coverLetter && (
-    <PDFLayout>
-      <Fragment slot="head">
-        <meta name="robots" content="noindex, nofollow" />
-      </Fragment>
-
-      <PDFHeader {...coverLetter} />
-      <PDFSection includePadding>
-        {coverLetter?.jobTitle && <h1>{coverLetter.jobTitle}</h1>}
-        {coverLetter?.companyName && <h2>{coverLetter.companyName}</h2>}
-        <article>
-          {coverLetter?.companyAddress && (
-            <section class="company-details">
-              <PortableText value={coverLetter.companyAddress} />
-            </section>
-          )}
-          {coverLetter?.greeting && <p class="greeting">{coverLetter.greeting},</p>}
-          {coverLetter?.openingParagraph && (
-            <section class="opening-paragraph">
-              <PortableText value={coverLetter.openingParagraph} />
-            </section>
-          )}
-          {coverLetter?.keyHighlights && (
-            <section class="key-highlights">
-              <PortableText value={coverLetter.keyHighlights} />
-            </section>
-          )}
-          {coverLetter?.closingParagraph && (
-            <section class="closing-paragraph">
-              <PortableText value={coverLetter.closingParagraph} />
-            </section>
-          )}
-          {coverLetter?.signOff && (
-            <>
-              <p class="sign-off">{coverLetter.signOff},</p>
-              <p>Adam Knee</p>
-            </>
-          )}
-        </article>
-      </PDFSection>
-    </PDFLayout>
-  )
-}
+<PDFLayout>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </Fragment>
+  {!coverLetter && <NotFound />}
+  {
+    coverLetter && (
+      <>
+        <PDFHeader {...coverLetter} />
+        <PDFSection includePadding>
+          {coverLetter?.jobTitle && <h1>{coverLetter.jobTitle}</h1>}
+          {coverLetter?.companyName && <h2>{coverLetter.companyName}</h2>}
+          <article>
+            {coverLetter?.companyAddress && (
+              <section class="company-details">
+                <PortableText value={coverLetter.companyAddress} />
+              </section>
+            )}
+            {coverLetter?.greeting && <p class="greeting">{coverLetter.greeting},</p>}
+            {coverLetter?.openingParagraph && (
+              <section class="opening-paragraph">
+                <PortableText value={coverLetter.openingParagraph} />
+              </section>
+            )}
+            {coverLetter?.keyHighlights && (
+              <section class="key-highlights">
+                <PortableText value={coverLetter.keyHighlights} />
+              </section>
+            )}
+            {coverLetter?.closingParagraph && (
+              <section class="closing-paragraph">
+                <PortableText value={coverLetter.closingParagraph} />
+              </section>
+            )}
+            {coverLetter?.signOff && (
+              <>
+                <p class="sign-off">{coverLetter.signOff},</p>
+                <p>Adam Knee</p>
+              </>
+            )}
+          </article>
+        </PDFSection>
+      </>
+    )
+  }
+</PDFLayout>
 
 <style>
   h1,

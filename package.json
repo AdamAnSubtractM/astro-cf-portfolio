@@ -16,18 +16,19 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/cloudflare": "^12.3.1",
-    "@astrojs/mdx": "^4.2.2",
+    "@astrojs/cloudflare": "^12.5.2",
+    "@astrojs/mdx": "^4.2.6",
     "@astrojs/rss": "^4.0.11",
-    "@astrojs/sitemap": "^3.3.0",
-    "@astrojs/solid-js": "^5.0.6",
+    "@astrojs/sitemap": "^3.3.1",
+    "@astrojs/solid-js": "^5.0.10",
     "@corvu/tooltip": "^0.2.2",
     "@fontsource/poppins": "^5.2.5",
     "@sanity/client": "^6.28.4",
-    "astro": "^5.5.5",
+    "astro": "^5.7.12",
     "astro-portabletext": "^0.10.1",
     "autoprefixer": "^10.4.21",
     "cssnano": "^7.0.6",
+    "embla-carousel-solid": "^8.6.0",
     "pdf-lib": "^1.17.1",
     "playwright-chromium": "^1.51.1",
     "postcss-nested": "^7.0.2",
@@ -38,6 +39,7 @@
     "@eslint/js": "^9.23.0",
     "@portabletext/types": "^2.0.13",
     "@types/node": "^22.13.14",
+    "embla-carousel": "^8.6.0",
     "eslint": "^9.23.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.5",
@@ -49,5 +51,5 @@
     "node": "^22.14.0",
     "pnpm": "^10.4.0"
   },
-  "packageManager": "pnpm@10.7.0"
+  "packageManager": "pnpm@10.10.0"
 }
