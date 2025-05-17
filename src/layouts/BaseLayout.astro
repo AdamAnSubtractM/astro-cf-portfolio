@@ -32,10 +32,11 @@ const className = backgroundImage ? 'background-image' : null;
   body.background-image {
     background-image: var(--bg-url);
     background-size: cover;
-    background-position: center;
+    background-position: 60% center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     @media (min-width: 96rem) {
-      background-position: top left;
-      background-size: 100%;
+      background-position: center center;
     }
   }
 </style>

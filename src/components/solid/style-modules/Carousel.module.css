@@ -6,7 +6,7 @@
 .viewport {
   overflow: hidden;
   width: 100%;
-  padding: var(--space-sm) 4px;
+  padding: var(--space-sm) 0;
 }
 
 .container {
@@ -33,29 +33,9 @@
   font-size: 2rem;
   cursor: pointer;
   z-index: 1;
-  margin: var(--space-sm) 4px;
+  margin: var(--space-sm) 0;
 }
 
 .next {
   transform: rotate(180deg);
-}
-
-.dots {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  margin: 0 4px;
-  border-radius: 50%;
-  background: #ccc;
-  border: none;
-  cursor: pointer;
-}
-
-.isSelected {
-  background: #333;
 }

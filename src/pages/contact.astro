@@ -1,7 +1,27 @@
 ---
 import ThemedLayout from '../layouts/ThemedLayout.astro';
+import BlurredCard from '../components/astro/BlurredCard.astro';
+import ContactCard from '../components/solid/ContactCard';
 ---
 
 <ThemedLayout title="Contact Me" description="Get in touch with Adam Knee">
-  <main></main>
+  <main>
+    <h1>Contact Me</h1>
+    <BlurredCard style="max-width: 100%">
+      <ContactCard client:load />
+    </BlurredCard>
+  </main>
 </ThemedLayout>
+
+<style>
+  main {
+    max-width: var(--size-width-content);
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--space-md);
+  }
+  h1 {
+    margin: 0;
+  }
+</style>

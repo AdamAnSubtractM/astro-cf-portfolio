@@ -1,7 +1,9 @@
-/* define layers and order of priority */
-@layer reset, theme, base, components, utilities;
 /* define the sanitize.css file to the reset layer */
-@import url(sanitize.css) layer(reset);
+/* 1. Declare layer priority */
+@layer reset, theme, base, components, utilities;
+
+@import url('sanitize.css') layer(reset);
+
 /* define theme tokens */
 @layer theme {
   /* @media (min-width: 30rem) { */
@@ -247,9 +249,10 @@
     min-height: 100vh;
   }
   h1 {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-bold);
     line-height: 1.2;
+    letter-spacing: -0.05rem;
   }
   a {
     color: var(--color-cta-celestial-gold);
@@ -294,6 +297,55 @@
   em {
     font-style: normal;
     color: var(--color-surface-light);
+  }
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    padding: var(--space-sm) var(--space-md);
+    cursor: pointer;
+    appearance: none;
+  }
+  fieldset {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid var(--color-secondary-lavender-gray);
+    border-radius: var(--radius-sm);
+    padding: 0;
+    margin: 0;
+    background-color: var(--color-secondary-charcoal-gray);
+    color: var(--color-secondary-light-gray);
+    font-size: var(--font-size-md);
+    /* line-height: 1.5; */
+    &:focus-visible {
+      outline: 2px solid var(--color-cta-celestial-gold);
+      border-radius: var(--radius-sm);
+      outline-offset: var(--radius-xs);
+    }
+    input {
+      background-color: transparent;
+      width: 100%;
+      border: none;
+      padding: var(--space-md);
+      font-family: inherit;
+      font-weight: var(--font-weight-bold);
+      font-size: inherit;
+      color: inherit;
+    }
+    button {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+    @media (min-width: 48rem) {
+      font-size: var(--font-size-lg);
+    }
   }
   .freeze {
     overflow-y: hidden;
