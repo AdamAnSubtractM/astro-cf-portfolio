@@ -26,6 +26,10 @@
   }
 }
 
+.prev {
+  margin-left: 4px;
+}
+
 .prev,
 .next {
   background: none;

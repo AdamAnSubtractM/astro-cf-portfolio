@@ -1,3 +1,19 @@
 .heading {
   margin-top: 0;
 }
+
+.social {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  margin: var(--space-sm) 0;
+  border: var(--size-width-border-sm) solid var(--color-secondary-lavender-gray);
+  border-radius: var(--radius-sm);
+}
+
+.social a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}

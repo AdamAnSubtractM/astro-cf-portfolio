@@ -3,17 +3,21 @@
   align-items: center;
   svg {
     max-width: 100%;
-    width: 120px;
+    width: 165px;
   }
   a {
-    color: currentColor;
     border-radius: var(--radius-md);
+    color: var(--color-secondary-lavender-gray);
   }
-  a:hover,
-  a:focus,
-  a:focus-visible {
-    color: var(--color-cta-celestial-gold);
-    outline: none;
+  a svg {
+    stroke: transparent;
+    stroke-width: 12;
+  }
+  a:hover {
+    color: transparent;
+  }
+  a:hover svg {
+    stroke: var(--color-cta-celestial-gold);
   }
 }
 
