@@ -350,37 +350,6 @@
 }
 
 @layer components {
-  fieldset {
-    display: flex;
-    justify-content: space-between;
-    border: var(--size-width-border-sm) solid var(--color-secondary-lavender-gray);
-    border-radius: var(--radius-sm);
-    padding: 0;
-    margin: 0;
-    color: var(--color-secondary-light-gray);
-    font-size: var(--font-size-md);
-    &:focus-visible {
-      outline: var(--size-width-border-md) solid var(--color-cta-celestial-gold);
-      border-radius: var(--radius-sm);
-    }
-    input {
-      background-color: transparent;
-      width: 100%;
-      border: none;
-      padding: var(--space-md);
-      font-family: inherit;
-      font-weight: var(--font-weight-bold);
-      font-size: inherit;
-      color: inherit;
-      @media (min-width: 48rem) {
-        font-size: var(--font-size-lg);
-      }
-    }
-    button {
-      border-top-right-radius: 0 !important;
-      border-bottom-right-radius: 0 !important;
-    }
-  }
 }
 
 @layer utilities {

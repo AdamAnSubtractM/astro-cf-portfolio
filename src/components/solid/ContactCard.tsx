@@ -1,8 +1,10 @@
-import { Toaster, toast } from 'solid-toast';
+import { toast } from 'solid-toast';
 import Button from './Button';
 import { mergeProps, type Component } from 'solid-js';
+import CheckSVG from './CheckSVG';
 import GithubSVG from './GithubSVG';
 import LinkedInSVG from './LinkedInSVG';
+import PatternBox from './PatternBox';
 
 import styles from './style-modules/ContactCard.module.css';
 
@@ -11,18 +13,29 @@ const ContactCard: Component<{ email?: string }> = (props) => {
 
   const copyEmail = async () => {
     await navigator.clipboard.writeText(merged.email);
-    toast.success('Email copied to clipboard', { duration: 2000 });
+    toast.success('Email copied to clipboard', {
+      icon: <CheckSVG />,
+      duration: 3000,
+      ariaProps: {
+        role: 'alert',
+        'aria-live': 'polite'
+      },
+      style: {
+        'background-color': 'var(--color-accent-electric-blue-30)',
+        border: 'var(--size-width-border-sm) solid var(--color-secondary-lavender-gray)',
+        color: 'var(--color-accent-electric-blue)',
+        'font-weight': 'var(--font-weight-bold)'
+      }
+    });
   };
 
   return (
     <>
-      <Toaster position="top-right" />
-      <h2 class={styles.heading}>Let's get in touch!</h2>
-      <fieldset>
+      <section class={styles.contactSlip}>
         <input type="email" value={merged.email} readOnly />
         <Button onClick={copyEmail}>Copy Email</Button>
-      </fieldset>
-      <section class={styles.social}>
+      </section>
+      <section class={styles.contactSlip}>
         <a
           class="icon-button icon-button--large"
           href="https://github.com/AdamAnSubtractM"
@@ -35,7 +48,7 @@ const ContactCard: Component<{ email?: string }> = (props) => {
           Follow me on Github
         </a>
       </section>
-      <section class={styles.social}>
+      <section class={styles.contactSlip}>
         <a
           class="icon-button icon-button--large"
           href="https://www.linkedin.com/in/adam-knee-web-dev/"
@@ -48,6 +61,7 @@ const ContactCard: Component<{ email?: string }> = (props) => {
           Connect with me on LinkedIn
         </a>
       </section>
+      <PatternBox />
     </>
   );
 };

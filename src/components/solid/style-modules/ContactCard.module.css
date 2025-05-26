@@ -1,8 +1,4 @@
-.heading {
-  margin-top: 0;
-}
-
-.social {
+.contactSlip {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
@@ -12,8 +8,24 @@
   border-radius: var(--radius-sm);
 }
 
-.social a {
+.contactSlip:first-of-type {
+  margin-bottom: var(--space-lg);
+}
+
+.contactSlip a {
   display: flex;
   align-items: center;
   gap: var(--space-md);
+}
+
+.contactSlip input[type='email'] {
+  padding: var(--space-sm);
+  border: var(--size-width-border-sm) solid var(--color-secondary-lavender-gray);
+  color: var(--color-secondary-light-gray);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-secondary-charcoal-gray-60);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  font-family: inherit;
+  width: 100%;
 }

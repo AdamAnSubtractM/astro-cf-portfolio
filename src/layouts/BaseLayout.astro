@@ -1,7 +1,9 @@
 ---
 import BaseHead from '../components/astro/BaseHead.astro';
 import Header from '../components/astro/Header.astro';
+import Footer from '../components/astro/Footer.astro';
 import MainNav from '../components/solid/MainNav';
+import { ClientRouter } from 'astro:transitions';
 
 type Props = {
   title?: string;
@@ -19,12 +21,14 @@ const className = backgroundImage ? 'background-image' : null;
   <head>
     <BaseHead title={title} description={description} image={image} />
     <slot name="head" />
+    <ClientRouter />
   </head>
   <body style={style} class={className}>
     <Header>
       <MainNav client:load />
     </Header>
     <slot />
+    <Footer />
   </body>
 </html>
 
