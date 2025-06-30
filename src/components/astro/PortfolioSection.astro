@@ -1,0 +1,29 @@
+---
+import { PortableText } from 'astro-portabletext';
+const { section, index } = Astro.props;
+---
+
+<section class="portfolio-section" data-index={index}>
+  <div class="content-block">
+    {section.heading && <h2>{section.heading}</h2>}
+    <PortableText value={section.description} />
+  </div>
+  <div class="image-wrapper">
+    <img src={section.imageUrl} alt={section.title} />
+  </div>
+</section>
+
+<style>
+  section {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: var(--space-md);
+    @media (min-width: 48rem) {
+      /* Styles for 768px and up */
+      flex-flow: row nowrap;
+      gap: var(--space-2xl);
+    }
+  }
+</style>

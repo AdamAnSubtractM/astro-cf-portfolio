@@ -86,11 +86,10 @@ const hasAsideContent = resume?.skills?.length;
     padding: 0;
     position: fixed;
     z-index: var(--layer-7);
-    right: var(--gap-xl, 2rem);
-    bottom: var(--gap-lg, 2em);
+    right: var(--gap-lg);
+    bottom: var(--gap-xl);
     @media (min-width: 80rem) {
-      right: var(--gap-xl, 2rem);
-      top: calc(var(--size-height-header) + var(--gap-lg, 2em));
+      top: calc(var(--size-height-header) + 3rem);
       bottom: unset;
     }
     @media print {

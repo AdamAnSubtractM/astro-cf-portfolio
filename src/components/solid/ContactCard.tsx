@@ -21,7 +21,7 @@ const ContactCard: Component<{ email?: string }> = (props) => {
         'aria-live': 'polite'
       },
       style: {
-        'background-color': 'var(--color-accent-electric-blue-30)',
+        'background-color': 'var(--color-primary-dark-purple-90)',
         border: 'var(--size-width-border-sm) solid var(--color-secondary-lavender-gray)',
         color: 'var(--color-accent-electric-blue)',
         'font-weight': 'var(--font-weight-bold)'

@@ -5,6 +5,7 @@ import GithubSVG from '../components/solid/GithubSVG';
 import PortfolioCarousel from '../components/solid/PortfolioCarousel';
 import Button from '../components/solid/Button';
 import type { EmblaOptionsType } from 'embla-carousel';
+import { getPortfolioPieces } from '../utils/sanity';
 
 const slides = [
   {
@@ -44,6 +45,14 @@ const slides = [
     link: '#'
   }
 ];
+const portfolioPieces = await getPortfolioPieces();
+const portfolioSlides = portfolioPieces.map((piece) => ({
+  title: piece.title,
+  description: piece.description,
+  imageUrl: piece.featuredImageUrl,
+  link: `/portfolio/${piece.slug}`,
+  tags: piece.tags
+}));
 
 const options: EmblaOptionsType = {
   breakpoints: {
@@ -88,6 +97,7 @@ const options: EmblaOptionsType = {
         <h2>Showcase</h2>
         <p>Drag the carousel or use the navigation arrows to see featured projects.</p>
         <PortfolioCarousel slides={slides} options={options} client:load />
+        <PortfolioCarousel slides={portfolioSlides} options={options} client:load />
       </article>
     </BlurredCard>
   </main>

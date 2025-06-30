@@ -43,4 +43,39 @@ export async function getCoverLetter(id: string) {
   return coverLetter;
 }
 
+export async function getPortfolioPieces() {
+  const query = `*[_type == "portfolioPiece"]{
+                    "slug": slug.current,
+                    title,
+                    description,
+                    tags[]->{
+                      title,
+                      slug
+                    },
+                    "featuredImageUrl": featuredImage.asset->url
+                }`;
+  return getSanityData(query);
+}
+
+export async function getPortfolioPiece(slug: string) {
+  const query = `*[
+                    _type == "portfolioPiece" &&
+                    slug.current == '${slug}'
+                  ][0]{
+                    title,
+                    description,
+                    "featuredImageUrl": featuredImage.asset->url,
+                    tags[]->{
+                      title,
+                      slug
+                    },
+                    sections[]{
+                      heading,
+                      description,
+                      "imageUrl": image.asset->url
+                    }
+                }`;
+  return getSanityData(query);
+}
+
 export default client;

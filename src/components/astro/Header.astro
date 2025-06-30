@@ -4,18 +4,15 @@
 
 <style>
   header {
-    background-color: var(--color-primary-dark-purple-10);
+    background-color: var(--color-primary-dark-purple-50);
     border-bottom: 1px solid var(--color-surface-light);
     position: sticky;
     top: 0;
     width: 100%;
     height: calc(var(--size-height-header) + var(--size-width-border-sm));
     z-index: var(--layer-top);
-    /* the magic: blur whatever’s behind this element */
     backdrop-filter: blur(10px);
-    /* for Safari / older WebKit browsers: */
     -webkit-backdrop-filter: blur(10px);
-    /* optional polish */
     transition: background-color 200ms ease-out;
   }
 </style>

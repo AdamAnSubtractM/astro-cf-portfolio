@@ -67,6 +67,8 @@
     background-color: unset;
     display: block;
     width: 100%;
+    text-shadow: 1px 1px 2px var(--color-primary-dark-purple);
+
     &:hover,
     &:focus {
       color: var(--color-cta-celestial-gold);
