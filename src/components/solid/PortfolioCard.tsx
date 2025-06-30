@@ -24,7 +24,12 @@ const PortfolioCard: Component<PortfolioCardProps> = (props) => {
         <Button variant="secondary" href={props.link}>
           Read More
         </Button>
-        <TagsSlider slides={props.tags} />
+        <TagsSlider
+          slides={props.tags?.map((tag) => ({
+            title: tag,
+            slug: { current: tag.toLowerCase().replace(/\s+/g, '-') }
+          }))}
+        />
       </div>
     </article>
   );

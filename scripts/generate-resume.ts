@@ -58,7 +58,7 @@ async function generatePdf() {
 
     // Post-process the PDF to move second-page content down
     const pdfDoc = await PDFDocument.load(pdfBuffer);
-    const pages = pdfDoc.getPages();
+    // const pages = pdfDoc.getPages();
 
     // for (let i = 1; i < pages.length; i++) {
     //   const page = pages[i];

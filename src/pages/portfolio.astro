@@ -46,13 +46,15 @@ const slides = [
   }
 ];
 const portfolioPieces = await getPortfolioPieces();
-const portfolioSlides = portfolioPieces.map((piece) => ({
-  title: piece.title,
-  description: piece.description,
-  imageUrl: piece.featuredImageUrl,
-  link: `/portfolio/${piece.slug}`,
-  tags: piece.tags
-}));
+const portfolioSlides = portfolioPieces.map(
+  (piece: { title: any; description: any; featuredImageUrl: any; slug: any; tags: any }) => ({
+    title: piece.title,
+    description: piece.description,
+    imageUrl: piece.featuredImageUrl,
+    link: `/portfolio/${piece.slug}`,
+    tags: piece.tags
+  })
+);
 
 const options: EmblaOptionsType = {
   breakpoints: {

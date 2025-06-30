@@ -36,7 +36,7 @@ if (!piece) {
           <p>{piece.description}</p>
         </div>
       </section>
-      {piece.sections?.map((section, index) => <PortfolioSection section={section} index={index} />)}
+      {piece.sections?.map((section: unknown, index: unknown) => <PortfolioSection section={section} index={index} />)}
     </article>
   </main>
 
