@@ -7,44 +7,6 @@ import Button from '../components/solid/Button';
 import type { EmblaOptionsType } from 'embla-carousel';
 import { getPortfolioPieces } from '../utils/sanity';
 
-const slides = [
-  {
-    title: 'Project 1',
-    description: 'Description of Project 1',
-    imageUrl: 'https://placehold.co/400x600/000000/FFFFFF/png',
-    link: '#'
-  },
-  {
-    title: 'Project 2',
-    description: 'Description of Project 2',
-    imageUrl: 'https://placehold.co/400x600/000000/FFFFFF/png',
-    link: '#'
-  },
-  {
-    title: 'Project 3',
-    description: 'Description of Project 3',
-    imageUrl: 'https://placehold.co/400x600/000000/FFFFFF/png',
-    link: '#'
-  },
-  {
-    title: 'Project 4',
-    description: 'Description of Project 4',
-    imageUrl: 'https://placehold.co/400x600/000000/FFFFFF/png',
-    link: '#'
-  },
-  {
-    title: 'Project 5',
-    description: 'Description of Project 5',
-    imageUrl: 'https://placehold.co/400x600/000000/FFFFFF/png',
-    link: '#'
-  },
-  {
-    title: 'Project 6',
-    description: 'Description of Project 6',
-    imageUrl: 'https://placehold.co/400x600/000000/FFFFFF/png',
-    link: '#'
-  }
-];
 const portfolioPieces = await getPortfolioPieces();
 console.log({ tag: portfolioPieces[0].tags[0].slug });
 const portfolioSlides = portfolioPieces.map(
@@ -53,7 +15,7 @@ const portfolioSlides = portfolioPieces.map(
     description: piece.description,
     imageUrl: piece.featuredImageUrl,
     link: `/portfolio/${piece.slug}`,
-    tags: piece.tags
+    tags: piece?.tags || []
   })
 );
 
