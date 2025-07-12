@@ -8,12 +8,11 @@ import type { EmblaOptionsType } from 'embla-carousel';
 import { getPortfolioPieces } from '../utils/sanity';
 
 const portfolioPieces = await getPortfolioPieces();
-console.log({ tag: portfolioPieces[0].tags[0].slug });
-const portfolioSlides = portfolioPieces.map(
+const portfolioSlides = portfolioPieces?.map(
   (piece: { title: any; description: any; featuredImageUrl: any; slug: any; tags: any }) => ({
-    title: piece.title,
-    description: piece.description,
-    imageUrl: piece.featuredImageUrl,
+    title: piece?.title,
+    description: piece?.description,
+    imageUrl: piece?.featuredImageUrl,
     link: `/portfolio/${piece.slug}`,
     tags: piece?.tags || []
   })
