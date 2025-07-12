@@ -1,9 +1,10 @@
 ---
 import { PortableText } from 'astro-portabletext';
 const { section, index } = Astro.props;
+const SECTION_ID = `portfolio-section-${index}`;
 ---
 
-<section class="portfolio-section" data-index={index}>
+<section id={SECTION_ID} class="portfolio-section" data-index={index}>
   <div class="content-block">
     {section.heading && <h2>{section.heading}</h2>}
     <PortableText value={section.description} />
@@ -20,6 +21,7 @@ const { section, index } = Astro.props;
     justify-content: space-between;
     align-items: stretch;
     gap: var(--space-md);
+    scroll-margin-top: 5rem;
     @media (min-width: 48rem) {
       /* Styles for 768px and up */
       flex-flow: row nowrap;

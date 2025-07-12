@@ -244,6 +244,7 @@
     font-family: 'Poppins', Helvetica, Arial, sans-serif;
     text-transform: lowercase;
     -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
   }
   body {
     min-height: 100vh;
@@ -279,6 +280,26 @@
     -webkit-mask: url('/rocket.svg') no-repeat center;
     -webkit-mask-size: contain;
     mask: url('/rocket.svg') no-repeat center;
+    mask-size: contain;
+    align-self: center;
+    @media print {
+      mask: unset;
+      display: none;
+    }
+  }
+
+  a[href^='#']:not(.icon-button)::after {
+    --size: 0.85em;
+    content: '';
+    display: inline-flex;
+    width: var(--size);
+    height: var(--size);
+    margin-left: 0.15em;
+    vertical-align: middle !important;
+    background-color: currentColor;
+    -webkit-mask: url('/down-arrow.svg') no-repeat center;
+    -webkit-mask-size: contain;
+    mask: url('/down-arrow.svg') no-repeat center;
     mask-size: contain;
     align-self: center;
     @media print {

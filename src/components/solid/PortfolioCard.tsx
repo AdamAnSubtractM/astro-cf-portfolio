@@ -8,11 +8,14 @@ export type PortfolioCardProps = {
   description?: string;
   imageUrl: string;
   link: string;
-  tags?: string[];
+  tags?: { title: string; slug: { _type: 'slug'; current: string } }[];
 };
 
 const PortfolioCard: Component<PortfolioCardProps> = (props) => {
-  console.log({ props });
+  const slides = props?.tags?.map((tag) => ({
+    title: tag.title,
+    slug: { current: tag.slug.current.toLowerCase().replace(/\s+/g, '-') }
+  }));
   return (
     <article class={styles.portfolioCard}>
       <div class={styles.thumbnail}>
@@ -24,12 +27,7 @@ const PortfolioCard: Component<PortfolioCardProps> = (props) => {
         <Button variant="secondary" href={props.link}>
           Read More
         </Button>
-        <TagsSlider
-          slides={props.tags?.map((tag) => ({
-            title: tag,
-            slug: { current: tag.toLowerCase().replace(/\s+/g, '-') }
-          }))}
-        />
+        <TagsSlider slides={slides} />
       </div>
     </article>
   );

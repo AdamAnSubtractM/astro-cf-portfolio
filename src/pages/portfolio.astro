@@ -46,6 +46,7 @@ const slides = [
   }
 ];
 const portfolioPieces = await getPortfolioPieces();
+console.log({ tag: portfolioPieces[0].tags[0].slug });
 const portfolioSlides = portfolioPieces.map(
   (piece: { title: any; description: any; featuredImageUrl: any; slug: any; tags: any }) => ({
     title: piece.title,
@@ -98,7 +99,6 @@ const options: EmblaOptionsType = {
       <article>
         <h2>Showcase</h2>
         <p>Drag the carousel or use the navigation arrows to see featured projects.</p>
-        <PortfolioCarousel slides={slides} options={options} client:load />
         <PortfolioCarousel slides={portfolioSlides} options={options} client:load />
       </article>
     </BlurredCard>

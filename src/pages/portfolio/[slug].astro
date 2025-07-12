@@ -2,6 +2,7 @@
 import ThemedLayout from '../../layouts/ThemedLayout.astro';
 import PortfolioSection from '../../components/astro/PortfolioSection.astro';
 import { getPortfolioPieces, getPortfolioPiece } from '../../utils/sanity';
+import Button from '../../components/solid/Button';
 
 // Define the type for portfolio pieces
 type PortfolioPiece = {
@@ -34,6 +35,7 @@ if (!piece) {
         <div class="intro content-block">
           <h1>{piece.title}</h1>
           <p>{piece.description}</p>
+          <Button href="#portfolio-section-0">Learn More Below</Button>
         </div>
       </section>
       {piece.sections?.map((section: unknown, index: unknown) => <PortfolioSection section={section} index={index} />)}
@@ -55,6 +57,7 @@ if (!piece) {
       flex-flow: column nowrap;
       justify-content: space-between;
       align-items: center;
+      gap: var(--space-md);
       @media (min-width: 48rem) {
         /* Styles for 768px and up */
         gap: var(--space-2xl);
@@ -70,6 +73,25 @@ if (!piece) {
         /* Styles for 768px and up */
         flex-flow: row nowrap;
         gap: var(--space-2xl);
+      }
+    }
+    h1 {
+      font-size: clamp(4rem, 7vw, 6rem);
+      margin: 0;
+    }
+    .intro {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-evenly;
+      gap: var(--space-md);
+      font-size: clamp(1.8rem, 2vw, 2.5rem);
+      line-height: 1.2;
+      color: var(--color-secondary-light-gray);
+      p {
+        margin-top: 0;
+      }
+      .button {
+        max-width: fit-content;
       }
     }
     :global(img) {
