@@ -1,7 +1,7 @@
 .base {
   display: inline-flex;
   padding: var(--space-sm) var(--space-md);
-  border: var(--size-width-border-sm) solid transparent;
+  border: var(--size-width-border-md) solid transparent;
   border-radius: var(--radius-sm);
   outline: none;
   transition:
@@ -12,7 +12,7 @@
   text-decoration: none;
   -webkit-font-smoothing: antialiased;
   text-wrap: nowrap;
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-md);
   appearance: none;
   text-transform: lowercase;
 }
@@ -46,4 +46,16 @@
   background-color: var(--color-secondary-charcoal-gray);
   color: var(--color-secondary-light-gray);
   border-color: var(--color-secondary-charcoal-gray);
+}
+
+/* Secondary Aleternate variant styles */
+.secondary-alternate {
+  background-color: transparent;
+  border-color: var(--color-secondary-lavender-gray);
+  color: var(--color-secondary-lavender-gray);
+}
+
+.secondary-alternate:hover {
+  background-color: var(--color-secondary-lavender-gray);
+  color: var(--color-secondary-charcoal-gray);
 }

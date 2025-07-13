@@ -15,19 +15,6 @@ type Props = {
 const { title, description, image, backgroundImage } = Astro.props;
 const style = backgroundImage ? `--bg-url: url('${backgroundImage}')` : null;
 const className = backgroundImage ? 'background-image' : null;
-
-// const verticalSlide = {
-//   forwards: {
-//     // old page slides up, new page drops in from below
-//     old: { name: 'slide-out-up', duration: '0.4s', easing: 'ease-in' },
-//     new: { name: 'slide-in-down', duration: '0.4s', easing: 'ease-out' }
-//   },
-//   backwards: {
-//     // on “back” navigation, reverse the directions
-//     old: { name: 'slide-out-down', duration: '0.4s', easing: 'ease-in' },
-//     new: { name: 'slide-in-up', duration: '0.4s', easing: 'ease-out' }
-//   }
-// };
 ---
 
 <html lang="en">
@@ -51,12 +38,9 @@ const className = backgroundImage ? 'background-image' : null;
   body.background-image {
     background-image: var(--bg-url);
     background-size: cover;
-    background-position: 60% center;
+    background-position: center top;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    @media (min-width: 96rem) {
-      background-position: center center;
-    }
   }
 </style>
 

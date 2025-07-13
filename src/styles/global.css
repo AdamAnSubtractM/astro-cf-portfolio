@@ -259,7 +259,6 @@
     color: var(--color-cta-celestial-gold);
     &:hover,
     &:focus {
-      /* color: var(--color-surface-light); */
       color: var(--color-accent-electric-blue);
       text-decoration-style: dotted;
     }

@@ -92,6 +92,7 @@ if (!piece) {
       }
       .button {
         max-width: fit-content;
+        font-size: var(--font-size-md);
       }
     }
     :global(img) {
@@ -106,10 +107,15 @@ if (!piece) {
     :global(.image-wrapper) {
       width: 100%;
       max-width: 100%;
+      border: 2px solid var(--color-secondary-lavender-gray-30);
       border-radius: var(--radius-sm);
       overflow: hidden;
+      padding: var(--space-xl);
       @media (min-width: 48rem) {
         max-width: 50%;
+      }
+      img {
+        border-radius: var(--radius-sm);
       }
     }
   </style>

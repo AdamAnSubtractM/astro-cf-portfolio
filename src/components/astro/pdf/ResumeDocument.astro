@@ -84,13 +84,20 @@ const hasAsideContent = resume?.skills?.length;
   .print-button {
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     position: fixed;
-    z-index: var(--layer-7);
-    right: var(--gap-lg);
+    left: 0;
     bottom: var(--gap-xl);
+    z-index: var(--layer-7);
     @media (min-width: 80rem) {
       top: calc(var(--size-height-header) + 3rem);
+      left: unset;
       bottom: unset;
+      right: var(--gap-2xl);
+      width: unset;
     }
     @media print {
       display: none;

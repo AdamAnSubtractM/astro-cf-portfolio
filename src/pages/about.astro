@@ -1,6 +1,7 @@
 ---
 import ThemedLayout from '../layouts/ThemedLayout.astro';
 import BlurredCard from '../components/astro/BlurredCard.astro';
+import Button from '../components/solid/Button';
 ---
 
 <ThemedLayout
@@ -36,6 +37,10 @@ import BlurredCard from '../components/astro/BlurredCard.astro';
           Whether I’m building software or hitting the trail, I bring the same passion, focus, and curiosity to
           everything I do.
         </p>
+        <div class="button-group">
+          <Button href="/resume"> View Resume </Button>
+          <Button href="/contact" variant="secondary-alternate"> Contact Me </Button>
+        </div>
       </BlurredCard>
     </section>
   </main>
@@ -50,9 +55,15 @@ import BlurredCard from '../components/astro/BlurredCard.astro';
     display: flex;
     justify-content: space-between;
     flex-flow: column nowrap;
-    gap: var(--space-md) var;
+    gap: var(--space-md);
     @media (min-width: 64rem) {
       flex-flow: row nowrap;
     }
+  }
+  .button-group {
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
   }
 </style>

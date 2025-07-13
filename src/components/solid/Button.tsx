@@ -4,7 +4,7 @@ import type { Component, JSX } from 'solid-js';
 import styles from './style-modules/Button.module.css';
 
 type ButtonProps = {
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'secondary-alternate';
   href?: string;
   onClick?: (e: MouseEvent) => void;
 } & JSX.HTMLAttributes<HTMLButtonElement> &
@@ -21,7 +21,7 @@ const Button: Component<ButtonProps> = (props) => {
 
   // Default to primary variant if none provided
   const variant = local.variant || 'primary';
-  const classNames = `${styles.base} ${variant === 'primary' ? styles.primary : styles.secondary}`;
+  const classNames = `${styles.base} ${styles[variant]}`;
 
   // Render as an anchor if href is provided, otherwise as a button
   if (local.href) {

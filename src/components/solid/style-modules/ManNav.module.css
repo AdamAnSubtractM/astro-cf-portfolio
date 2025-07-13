@@ -4,7 +4,7 @@
   svg {
     max-width: 100%;
     width: 140px;
-    transition: stroke 0.2s ease-in-out;
+    transition: stroke 0.2s ease-in-out fill 0.2s ease-in-out;
   }
   a {
     border-radius: var(--radius-md);
@@ -16,10 +16,10 @@
     stroke-width: 18;
   }
   a:hover {
-    color: transparent;
+    color: var(--color-secondary-lavender-gray-30);
   }
   a:hover svg {
-    stroke: var(--color-cta-celestial-gold);
+    stroke: var(--color-primary-dark-purple);
   }
 }
 
