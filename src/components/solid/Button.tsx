@@ -21,20 +21,23 @@ const Button: Component<ButtonProps> = (props) => {
 
   // Default to primary variant if none provided
   const variant = local.variant || 'primary';
-  const classNames = `${styles.base} ${styles[variant]}`;
+  const classNames =
+    !local.href && !local.onClick
+      ? `${styles.base} ${styles[variant]} ${styles[`${variant}--disabled`]}`
+      : `${styles.base} ${styles[variant]}`;
 
   // Render as an anchor if href is provided, otherwise as a button
-  if (local.href) {
-    return (
-      <a {...others} href={local.href} class={`button ${classNames}`}>
-        {local.children}
-      </a>
-    );
-  } else {
+  if (local.onClick) {
     return (
       <button {...others} type="button" onClick={local.onClick} class={classNames}>
         {local.children}
       </button>
+    );
+  } else {
+    return (
+      <a {...others} href={local.href} class={`button ${classNames}`}>
+        {local.children}
+      </a>
     );
   }
 };

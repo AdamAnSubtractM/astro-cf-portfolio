@@ -73,7 +73,9 @@ export async function getPortfolioPiece(slug: string) {
                       heading,
                       description,
                       "imageUrl": image.asset->url
-                    }
+                    },
+                    launchUrl,
+                    repoUrl
                 }`;
   return getSanityData(query);
 }

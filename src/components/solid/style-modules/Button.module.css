@@ -34,6 +34,14 @@
   background-color: var(--color-accent-electric-blue);
 }
 
+.primary--disabled,
+.primary--disabled:hover {
+  border-color: var(--color-cta-celestial-gold-30);
+  background-color: var(--color-cta-celestial-gold-30);
+  color: var(--color-primary-dark-purple-80);
+  cursor: not-allowed;
+}
+
 /* Secondary variant styles */
 .secondary {
   background-color: transparent;
