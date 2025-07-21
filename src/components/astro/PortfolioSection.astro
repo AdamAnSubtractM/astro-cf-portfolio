@@ -1,10 +1,10 @@
 ---
 import { PortableText } from 'astro-portabletext';
-const { section, index } = Astro.props;
+const { section, index, alternate } = Astro.props;
 const SECTION_ID = `portfolio-section-${index}`;
 ---
 
-<section id={SECTION_ID} class="portfolio-section" data-index={index}>
+<section id={SECTION_ID} class={alternate ? `portfolio-section alternate` : `portfolio-section`} data-index={index}>
   <div class="content-block">
     {section.heading && <h2>{section.heading}</h2>}
     <PortableText value={section.description} />
@@ -27,5 +27,8 @@ const SECTION_ID = `portfolio-section-${index}`;
       flex-flow: row nowrap;
       gap: var(--space-2xl);
     }
+  }
+  section.alternate .content-block {
+    order: 1;
   }
 </style>

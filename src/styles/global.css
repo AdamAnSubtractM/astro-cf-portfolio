@@ -314,10 +314,12 @@
   p {
     text-transform: none;
   }
+
   em {
     font-style: normal;
     color: var(--color-surface-light);
   }
+
   button {
     display: inline-flex;
     align-items: center;

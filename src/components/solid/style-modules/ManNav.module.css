@@ -1,25 +1,29 @@
 .logo {
+  --transition-timing: 0.2s;
+  --transition-type: ease-in-out;
   display: flex;
   align-items: center;
   svg {
     max-width: 100%;
     width: 140px;
-    transition: stroke 0.2s ease-in-out fill 0.2s ease-in-out;
+    transition:
+      stroke var(--transition-timing) var(--transition-type),
+      fill var(--transition-timing) var(--transition-type);
   }
   a {
     border-radius: var(--radius-md);
     color: var(--color-secondary-lavender-gray);
-    transition: color 0.2s ease-in-out;
+    transition: color var(--transition-timing) var(--transition-type);
   }
   a svg {
     stroke: transparent;
-    stroke-width: 18;
+    stroke-width: 20;
   }
   a:hover {
-    color: var(--color-secondary-lavender-gray-30);
+    color: var(--color-primary-dark-purple);
   }
   a:hover svg {
-    stroke: var(--color-primary-dark-purple);
+    stroke: var(--color-cta-celestial-gold);
   }
 }
 
