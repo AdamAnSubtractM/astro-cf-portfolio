@@ -3,6 +3,8 @@ import ThemedLayout from '../../layouts/ThemedLayout.astro';
 import PortfolioSection from '../../components/astro/PortfolioSection.astro';
 import { getPortfolioPieces, getPortfolioPiece } from '../../utils/sanity';
 import Button from '../../components/solid/Button';
+import { TagsList } from '../../components/solid/TagsList';
+import StickyWrapper from '../../components/astro/StickyWrapper.astro';
 
 // Define the type for portfolio pieces
 type PortfolioPiece = {
@@ -38,6 +40,7 @@ console.log({ piece });
           <h1>{piece.title}</h1>
           <p>{piece.description}</p>
           <Button href="#portfolio-section-0">Learn More Below</Button>
+          <TagsList title="Tech used in this project:" slides={piece.tags} />
         </div>
       </section>
       {
@@ -45,7 +48,7 @@ console.log({ piece });
           <PortfolioSection section={section} index={index} alternate={Boolean(index % 2 !== 0)} />
         ))
       }
-      <section class="cta-wrapper">
+      <StickyWrapper>
         {
           !piece.repoUrl && (
             <div class="info">
@@ -54,8 +57,8 @@ console.log({ piece });
                   <b>Why is this repository link disabled?</b>
                 </p>
                 <p class="description">
-                  Many of my projects are require to be in private repos. I'm happy to dicuss any of my projects in
-                  further detail.
+                  Many of my projects are required to be in private repositories. I'm happy to dicuss any of my projects
+                  in further detail.
                 </p>
               </>
             </div>
@@ -69,7 +72,7 @@ console.log({ piece });
             </Button>
           )
         }
-      </section>
+      </StickyWrapper>
     </article>
   </main>
 
@@ -130,20 +133,6 @@ console.log({ piece });
         /* Styles for 768px and up */
         order: 1;
       }
-    }
-    .cta-wrapper {
-      position: sticky;
-      width: 98%;
-      padding: var(--space-md);
-      gap: var(--space-md);
-      bottom: var(--space-sm);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-flow: row wrap;
-      background-color: var(--color-primary-dark-purple-98);
-      border: var(--size-width-border-sm) solid var(--color-secondary-lavender-gray);
-      border-radius: var(--radius-md);
     }
     .info {
       max-width: 700px;

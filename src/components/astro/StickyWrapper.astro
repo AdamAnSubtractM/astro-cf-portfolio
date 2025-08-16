@@ -1,0 +1,24 @@
+<section class="cta-wrapper">
+  <slot />
+</section>
+
+<style>
+  .cta-wrapper {
+    position: sticky;
+    width: 98%;
+    padding: var(--space-md);
+    gap: var(--space-md);
+    bottom: var(--space-sm);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+    background-color: var(--color-primary-dark-purple-98);
+    border: var(--size-width-border-sm) solid var(--color-secondary-lavender-gray);
+    border-radius: var(--radius-md);
+    z-index: var(--layer-9);
+    @media print {
+      display: none;
+    }
+  }
+</style>

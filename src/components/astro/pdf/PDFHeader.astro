@@ -4,11 +4,10 @@ type Social = {
   url: string;
 };
 
+type Logo = { svgUrl?: string | null; pngUrl?: string | null };
+
 type Props = {
-  logo: {
-    svg?: string;
-    png?: string;
-  };
+  logo: Logo;
   contactInfo: {
     name?: string;
     title?: string;
@@ -18,6 +17,17 @@ type Props = {
 };
 
 const { logo, contactInfo } = Astro.props;
+
+// Try to inline the SVG (build-time) if an .svg URL exists
+let svgHtml: string | null = null;
+if (logo?.svgUrl?.endsWith('.svg')) {
+  try {
+    const res = await fetch(logo.svgUrl);
+    svgHtml = res.ok ? await res.text() : null;
+  } catch {
+    /* ignore */
+  }
+}
 
 const hasPrimaryInfo = contactInfo?.name || contactInfo?.title;
 const hasSecpondaryInfo = contactInfo?.email || contactInfo?.socials?.length;
@@ -33,11 +43,19 @@ const hasContactInfo = hasPrimaryInfo || hasSecpondaryInfo;
             {contactInfo?.name && <h1>{contactInfo.name}</h1>}
             {contactInfo?.title && <h2>{contactInfo.title}</h2>}
           </div>
-          {logo?.svg && (
+          {svgHtml ? (
             <div class="logo">
-              <Fragment set:html={logo.svg} />
+              <Fragment set:html={svgHtml} />
             </div>
-          )}
+          ) : logo?.svgUrl ? (
+            <div class="logo">
+              <img src={logo.svgUrl} alt="Logo" loading="lazy" />
+            </div>
+          ) : logo?.pngUrl ? (
+            <div class="logo">
+              <img src={logo.pngUrl} alt="Logo" loading="lazy" />
+            </div>
+          ) : null}
         </div>
       )}
       {hasSecpondaryInfo && (

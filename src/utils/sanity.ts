@@ -16,7 +16,10 @@ async function getSanityData(query: string) {
 export async function getResume() {
   const _query = `*[_type == "resume"][0] {
                     ...,
-                    "logo": logo->,
+                    logo->{
+                      "svgUrl": svg.asset->url,
+                      "pngUrl": png.asset->url
+                    },
                     "contactInfo": contactInfo->{
                       ...,
                       "socials": *[_type == "social"]
@@ -33,11 +36,14 @@ export async function getResume() {
 export async function getCoverLetter(id: string) {
   const _query = `*[_type == "coverLetter" && _id == '${id}'][0] {
                     ...,
-                    "logo": logo->,
-                      "contactInfo": contactInfo->{
-                        ...,
-                        "socials": *[_type == "social"]
-                      },
+                    logo->{
+                      "svgUrl": svg.asset->url,
+                      "pngUrl": png.asset->url
+                    },
+                    "contactInfo": contactInfo->{
+                      ...,
+                      "socials": *[_type == "social"]
+                    },
                   }`;
   const coverLetter = await getSanityData(_query);
   return coverLetter;

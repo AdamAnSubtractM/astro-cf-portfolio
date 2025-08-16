@@ -1,6 +1,12 @@
-.tagSlider {
+.title {
+  width: 100%;
+  clear: both;
+  font-size: var(--font-size-md);
+}
+
+.tagsList {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   gap: var(--space-xs);
   overflow-x: scroll;
   padding: var(--space-xs) 0;

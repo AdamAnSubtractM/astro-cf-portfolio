@@ -3,14 +3,16 @@ import { Tag } from './Tag';
 import styles from './style-modules/TagSlider.module.css';
 
 type Props = {
+  title?: string;
   slides?: { title: string; slug: { current: string } }[];
 };
 
-export const TagsSlider: Component<Props> = ({ slides }) => {
+export const TagsList: Component<Props> = ({ title, slides }) => {
   console.log({ slides });
   if (!slides?.length) return null;
   return (
-    <div class={styles.tagSlider}>
+    <div class={styles.tagsList}>
+      {title && <p class={styles.title}>{title}</p>}
       <For each={slides}>{(slide) => <Tag slug={slide.slug.current}>{slide.title}</Tag>}</For>
     </div>
   );

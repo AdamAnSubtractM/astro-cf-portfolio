@@ -1,6 +1,5 @@
 import type { Component } from 'solid-js';
 import Button from './Button';
-import { TagsSlider } from './TagsSlider';
 import styles from './style-modules/PortfolioCard.module.css';
 
 export type PortfolioCardProps = {
@@ -12,10 +11,6 @@ export type PortfolioCardProps = {
 };
 
 const PortfolioCard: Component<PortfolioCardProps> = (props) => {
-  const slides = props?.tags?.map((tag) => ({
-    title: tag.title,
-    slug: { current: tag.slug.current.toLowerCase().replace(/\s+/g, '-') }
-  }));
   return (
     <article class={styles.portfolioCard}>
       <div class={styles.thumbnail}>
@@ -27,7 +22,6 @@ const PortfolioCard: Component<PortfolioCardProps> = (props) => {
         <Button variant="secondary" href={props.link}>
           Read More
         </Button>
-        <TagsSlider slides={slides} />
       </div>
     </article>
   );
