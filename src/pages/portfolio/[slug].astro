@@ -8,13 +8,15 @@ import StickyWrapper from '../../components/astro/StickyWrapper.astro';
 
 // Define the type for portfolio pieces
 type PortfolioPiece = {
-  slug: string;
+  slug: {
+    current: string;
+  };
 };
 
 // 1. Static‐generate all slugs at build time
 export async function getStaticPaths() {
   const portfolioGallery = await getPortfolioPieces();
-  return portfolioGallery?.pieces?.map((piece: any) => ({ params: { slug: piece.slug?.current } }));
+  return portfolioGallery?.pieces?.map((piece: PortfolioPiece) => ({ params: { slug: piece.slug?.current } }));
 }
 
 // 2. Pull slug from Astro.params and fetch directly
