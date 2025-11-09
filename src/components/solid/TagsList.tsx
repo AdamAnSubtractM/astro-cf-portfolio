@@ -8,7 +8,6 @@ type Props = {
 };
 
 export const TagsList: Component<Props> = ({ title, slides }) => {
-  console.log({ slides });
   if (!slides?.length) return null;
   return (
     <div class={styles.tagsList}>

@@ -49,17 +49,20 @@ export async function getCoverLetter(id: string) {
   return coverLetter;
 }
 
-export async function getPortfolioPieces() {
-  const query = `*[_type == "portfolioPiece"]{
-                    "slug": slug.current,
-                    title,
-                    description,
-                    tags[]->{
-                      title,
-                      slug
-                    },
-                    "featuredImageUrl": featuredImage.asset->url
-                }`;
+export async function getPortfolioPieces(slug: string = 'best-showcase') {
+  const query = `*[_type == "portfolioGallery" && slug.current == '${slug}'][0]{
+    "slug": slug.current,
+    title,
+    intro,
+    showTagsFilter,
+    "pieces": pieces[]->{
+      title,
+      description,
+      "featuredImageUrl": featuredImage.asset->url,
+      slug,
+      tags,
+    }
+  }`;
   return getSanityData(query);
 }
 

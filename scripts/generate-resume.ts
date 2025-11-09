@@ -17,7 +17,7 @@ async function generatePdf() {
     },
     path: join(pubDir, 'adam-knee-resume.pdf'),
     htmlSource: join(__dirname, '../dist/resume/index.html'),
-    desiredPageCount: 2,
+    desiredPageCount: 3,
     defaultFontSize: 1.0,
     multiPageSpacerHeight: 12 // Spacer height in pixels
   };
@@ -48,8 +48,6 @@ async function generatePdf() {
       ${htmlContent}
     `;
 
-    console.log('Modified HTML content with font-size:', modifiedHtmlContent);
-
     // Set content with injected CSS and wait for it to load
     await page.setContent(modifiedHtmlContent, { waitUntil: 'networkidle' });
 
@@ -58,14 +56,6 @@ async function generatePdf() {
 
     // Post-process the PDF to move second-page content down
     const pdfDoc = await PDFDocument.load(pdfBuffer);
-    // const pages = pdfDoc.getPages();
-
-    // for (let i = 1; i < pages.length; i++) {
-    //   const page = pages[i];
-    //   console.log('Shifting page content.');
-    //   // Shift the content of the page down by the spacer height
-    //   page.translateContent(0, -pdfSettings.multiPageSpacerHeight);
-    // }
 
     // Save the updated PDF buffer
     const updatedPdfBuffer = await pdfDoc.save();
@@ -79,7 +69,7 @@ async function generatePdf() {
     );
 
     // Decrease font size if too many pages
-    fontSize -= 0.15;
+    fontSize -= 0.0985;
 
     // Save the latest PDF buffer
     finalPdfBuffer = updatedPdfBuffer;

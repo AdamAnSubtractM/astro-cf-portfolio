@@ -31,7 +31,7 @@ const { title, subtitle, startdate, enddate, description } = Astro.props;
 
 <style>
   section {
-    padding: var(--gap-sm, 0.5em) 0;
+    padding: var(--gap, 1em) 0;
     border-bottom: var(--border-alternate);
     page-break-inside: avoid;
     &:last-child {
@@ -44,8 +44,12 @@ const { title, subtitle, startdate, enddate, description } = Astro.props;
     justify-content: space-between;
     align-items: flex-start;
     gap: var(--gap-xs, 0.25em);
+    margin-bottom: var(--gap, 1em);
   }
 
+  h3 {
+    margin-bottom: var(--gap-sm, 0.5em);
+  }
   h3,
   h4 {
     font-size: 1.12em;
@@ -55,6 +59,7 @@ const { title, subtitle, startdate, enddate, description } = Astro.props;
     page-break-after: avoid;
     @media print {
       color: var(--color-secondary-charcoal-gray) !important;
+      background-color: unset !important;
     }
   }
   h3 {

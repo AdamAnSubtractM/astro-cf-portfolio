@@ -20,8 +20,9 @@ const classes = ['section', includePadding && 'padding', isImportant && 'importa
     font-weight: 900;
     font-size: 1.5em;
     border-bottom: var(--border);
-    padding: var(--gap-sm, 0.5em) 0;
+    padding: var(--gap-xs, 0.25em) 0;
     margin-bottom: 0;
+    margin-top: var(--gap-xs, 0.25em);
     page-break-after: avoid;
     color: var(--color-secondary-light-gray);
     background-color: var(--color-background-primary);
@@ -30,6 +31,7 @@ const classes = ['section', includePadding && 'padding', isImportant && 'importa
     z-index: var(--layer-7);
     @media print {
       color: var(--color-secondary-charcoal-gray);
+      background-color: unset;
       position: unset;
     }
   }
@@ -47,9 +49,16 @@ const classes = ['section', includePadding && 'padding', isImportant && 'importa
     padding: var(--gap, 1em);
   }
   section.important {
-    color: var(--color-secondary-light-gray);
+    p,
+    ul {
+      color: var(--color-secondary-light-gray);
+    }
     @media print {
       color: var(--color-secondary-charcoal-gray);
+      p,
+      ul {
+        color: var(--color-secondary-charcoal-gray);
+      }
     }
   }
 </style>

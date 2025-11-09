@@ -2,13 +2,13 @@
 import { PortableText } from 'astro-portabletext';
 import type { PortableTextBlock } from '@portabletext/types';
 
-type SkillsColumn = {
+type SkillsSection = {
   title: string;
   skillsContent: PortableTextBlock;
 };
 
 type Props = {
-  skills: SkillsColumn[];
+  skills: SkillsSection[];
 };
 
 const { skills } = Astro.props;
@@ -17,30 +17,30 @@ const { skills } = Astro.props;
 {
   skills?.length && (
     <div>
-      {skills?.map((skillsColumn: SkillsColumn) => (
-        <>{skillsColumn?.skillsContent && <PortableText value={skillsColumn.skillsContent} />}</>
+      {skills?.map((section: SkillsSection) => (
+        <article>
+          {section?.title && <h3>{section.title}</h3>}
+          {section?.skillsContent && <PortableText value={section.skillsContent} />}
+        </article>
       ))}
     </div>
   )
 }
 
 <style>
+  h3 {
+    margin-top: 0;
+    margin-bottom: var(--gap-xs, 0.25em);
+  }
   div {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
     page-break-inside: avoid;
-    padding: var(--gap-sm, 0.5em) 0;
-    gap: 0;
-    @media (min-width: 580px) {
-      flex-flow: row wrap;
-      gap: var(--gap-sm, 0.5em);
-    }
-    ul {
-      margin: 0;
-      @media (min-width: 580px) {
-        width: calc(25% - var(--gap-sm, 0.5em));
-      }
+  }
+  article {
+    page-break-inside: avoid;
+    padding: var(--gap, 1em) 0;
+    border-bottom: var(--border-alternate);
+    &:last-child {
+      border-bottom: none;
     }
   }
 </style>

@@ -16,13 +16,17 @@
 
 /* show 3 slides at a time */
 .slide {
-  flex: 0 0 calc(100% - var(--space-md));
+  flex: 0 0 calc(88% - var(--space-md));
   min-width: 0;
   @media (min-width: 30rem) {
-    flex: 0 0 calc(100% / 2 - var(--space-md));
+    flex: 0 0 calc(100% / 1.2 - var(--space-md));
   }
   @media (min-width: 48rem) {
-    flex: 0 0 calc(100% / 3 - var(--space-md) * 2);
+    /* Styles for 768px and up */
+    flex: 0 0 calc(100% / 2.2 - var(--space-md) * 2);
+  }
+  @media (min-width: 64rem) {
+    flex: 0 0 calc(100% / 3.2 - var(--space-md) * 2);
   }
 }
 

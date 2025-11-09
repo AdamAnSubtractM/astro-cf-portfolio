@@ -35,9 +35,9 @@ import ThemedLayout from './ThemedLayout.astro';
     height: 100%;
     min-height: 100vh;
   }
-  :global(#main-header, #main-footer) {
+  :global(#main-header, #main-footer, footer) {
     @media print {
-      display: none;
+      display: none !important;
     }
   }
   :global(html, body) {
@@ -45,6 +45,9 @@ import ThemedLayout from './ThemedLayout.astro';
       background-color: white !important;
       color: var(--color-secondary-charcoal-gray) !important;
     }
+  }
+  :global(li) {
+    margin-bottom: var(--gap-sm, 0.5em);
   }
   .pdf {
     display: flex;

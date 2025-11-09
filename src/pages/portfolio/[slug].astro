@@ -13,8 +13,8 @@ type PortfolioPiece = {
 
 // 1. Static‐generate all slugs at build time
 export async function getStaticPaths() {
-  const pieces = await getPortfolioPieces();
-  return pieces.map((piece: PortfolioPiece) => ({ params: { slug: piece.slug } }));
+  const portfolioGallery = await getPortfolioPieces();
+  return portfolioGallery?.pieces?.map((piece: any) => ({ params: { slug: piece.slug?.current } }));
 }
 
 // 2. Pull slug from Astro.params and fetch directly
@@ -25,8 +25,6 @@ const piece = await getPortfolioPiece(slug);
 if (!piece) {
   throw new Error(`No portfolio piece found for slug: ${slug}`);
 }
-
-console.log({ piece });
 ---
 
 <ThemedLayout title={piece.title}>
@@ -103,6 +101,7 @@ console.log({ piece });
       justify-content: space-between;
       align-items: stretch;
       gap: var(--space-md);
+      width: 100%;
       @media (min-width: 48rem) {
         /* Styles for 768px and up */
         flex-flow: row nowrap;
@@ -110,7 +109,7 @@ console.log({ piece });
       }
     }
     h1 {
-      font-size: clamp(4rem, 7vw, 6rem);
+      font-size: clamp(3rem, 4vw, 6rem);
       margin: 0;
     }
     .intro {
@@ -159,6 +158,9 @@ console.log({ piece });
       width: 100%;
       font-size: var(--font-size-md);
       text-transform: none;
+      @media (min-width: 48rem) {
+        font-size: var(--font-size-lg);
+      }
       h2 {
         font-size: var(--font-size-2xl);
         text-transform: lowercase;
@@ -169,6 +171,9 @@ console.log({ piece });
         flex-flow: column wrap;
         justify-content: space-between;
         gap: var(--space-md);
+        ul {
+          margin-top: var(--space-md);
+        }
       }
     }
     :global(.image-wrapper) {
@@ -189,6 +194,7 @@ console.log({ piece });
       }
       img {
         border-radius: var(--radius-sm);
+        object-fit: contain;
       }
     }
   </style>

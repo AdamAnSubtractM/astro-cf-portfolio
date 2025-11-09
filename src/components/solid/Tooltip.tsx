@@ -1,4 +1,4 @@
-import CorvuTooltip, { Trigger, Content, Arrow } from '@corvu/tooltip';
+import CorvuTooltip, { Trigger, Content } from '@corvu/tooltip';
 import type { Component, JSX } from 'solid-js';
 
 type TooltipProps = {

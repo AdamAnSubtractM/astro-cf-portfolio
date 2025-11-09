@@ -11,8 +11,9 @@ import Button from '../components/solid/Button';
         I'm an <a href="/resume">experienced software developer</a> who builds
         <a href="/portfolio">cool stuff</a> that is out&nbsp;of&nbsp;this&nbsp;world.
       </h2>
-      <div>
-        <Button href="/portfolio">view portfolio</Button>
+      <div class="button-group">
+        <Button href="/portfolio">View Portfolio</Button>
+        <Button href="/resume" variant="secondary-alternate">View Resume</Button>
       </div>
     </article>
     <section>
@@ -210,7 +211,7 @@ import Button from '../components/solid/Button';
     padding: 0;
   }
   h1 {
-    font-size: clamp(2.85rem, 14vw, 7rem);
+    font-size: clamp(2.25rem, 12.4vw, 7rem);
     font-weight: var(--font-weight-black);
     margin: var(--space-lg) 0;
     text-wrap: balance;
@@ -229,6 +230,7 @@ import Button from '../components/solid/Button';
     flex-flow: column wrap;
     align-items: center;
     gap: var(--space-md);
+    padding: var(--space-lg);
     width: 100%;
     max-width: var(--size-width-content);
     @media (min-width: 64rem) {

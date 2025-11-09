@@ -22,8 +22,6 @@ type Study = Omit<Job, 'company'>;
 
 const resume = await getResume();
 
-console.log({ resume });
-
 const hasEducation = resume?.educationEnabled && resume?.education?.length;
 const hasMainContent = resume?.highlights?.length || resume?.experience?.length || hasEducation;
 const hasAsideContent = resume?.skills?.length;
@@ -40,19 +38,19 @@ const hasAsideContent = resume?.skills?.length;
             {hasMainContent && (
               <main>
                 {resume?.highlights?.length && (
-                  <PDFSection title="Highlights" isImportant>
+                  <PDFSection title="Summary" isImportant>
                     <PortableText value={resume.highlights} />
                   </PDFSection>
                 )}
                 {resume?.experience?.length && (
-                  <PDFSection title="Experience">
+                  <PDFSection title="Experience" isImportant>
                     {resume.experience.map((job: Job) => (
                       <ResumeItem subtitle={job?.company} {...job} />
                     ))}
                   </PDFSection>
                 )}
                 {hasEducation && (
-                  <PDFSection title="Education">
+                  <PDFSection title="Education" isImportant>
                     {resume.education.map((study: Study) => (
                       <ResumeItem {...study} />
                     ))}
@@ -62,7 +60,7 @@ const hasAsideContent = resume?.skills?.length;
             )}
             {hasAsideContent && (
               <aside>
-                <PDFSection title="Skills & Tools">
+                <PDFSection title="Skills & Tools" isImportant>
                   <ResumeSkills skills={resume.skills} />
                 </PDFSection>
               </aside>

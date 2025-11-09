@@ -369,6 +369,12 @@
     cursor: not-allowed !important;
     color: var(--color-secondary-lavender-gray-50);
   }
+  .button-group {
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+  }
 }
 
 @layer components {

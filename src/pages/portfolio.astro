@@ -4,30 +4,19 @@ import BlurredCard from '../components/astro/BlurredCard.astro';
 import GithubSVG from '../components/solid/GithubSVG';
 import PortfolioCarousel from '../components/solid/PortfolioCarousel';
 import Button from '../components/solid/Button';
-import type { EmblaOptionsType } from 'embla-carousel';
 import { getPortfolioPieces } from '../utils/sanity';
 
-const portfolioPieces = await getPortfolioPieces();
-const portfolioSlides = portfolioPieces?.map(
+const portfolioGallery = await getPortfolioPieces();
+// TODO - Type
+const portfolioSlides = portfolioGallery?.pieces?.map(
   (piece: { title: any; description: any; featuredImageUrl: any; slug: any; tags: any }) => ({
     title: piece?.title,
     description: piece?.description,
     imageUrl: piece?.featuredImageUrl,
-    link: `/portfolio/${piece.slug}`,
+    link: `/portfolio/${piece.slug?.current}`,
     tags: piece?.tags || []
   })
 );
-
-const options: EmblaOptionsType = {
-  breakpoints: {
-    '(min-width: 30rem)': {
-      slidesToScroll: 2
-    },
-    '(min-width: 48rem)': {
-      slidesToScroll: 3
-    }
-  }
-};
 ---
 
 <ThemedLayout title="My Portfolio" description="A showcase of Adam Knee's work">
@@ -52,15 +41,18 @@ const options: EmblaOptionsType = {
             professional work, you can still see all of my activity and public commits on my GitHub profile. I’m also
             happy to discuss any of my private projects upon request.
           </p>
-          <Button href="https://github.com/AdamAnSubtractM" target="_blank">View GitHub</Button>
+          <div class="button-group">
+            <Button href="https://github.com/AdamAnSubtractM" target="_blank">View GitHub</Button>
+            <Button href="#showcase" variant="secondary-alternate">See Showcase</Button>
+          </div>
         </div>
       </section>
     </BlurredCard>
     <BlurredCard style="max-width: 100%;">
-      <article>
+      <article id="showcase">
         <h2>Showcase</h2>
         <p>Drag the carousel or use the navigation arrows to see featured projects.</p>
-        <PortfolioCarousel slides={portfolioSlides} options={options} client:load />
+        <PortfolioCarousel slides={portfolioSlides} client:load />
       </article>
     </BlurredCard>
   </main>
@@ -106,6 +98,10 @@ const options: EmblaOptionsType = {
     h3 {
       font-size: var(--font-size-xl);
     }
+  }
+
+  .button-group {
+    margin: 1rem 0 0 0;
   }
 
   :global(.github-logo svg) {

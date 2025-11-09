@@ -22,6 +22,7 @@ const SECTION_ID = `portfolio-section-${index}`;
     align-items: stretch;
     gap: var(--space-md);
     scroll-margin-top: 5rem;
+    width: 100%;
     @media (min-width: 48rem) {
       /* Styles for 768px and up */
       flex-flow: row nowrap;
@@ -29,6 +30,8 @@ const SECTION_ID = `portfolio-section-${index}`;
     }
   }
   section.alternate .content-block {
-    order: 1;
+    @media (min-width: 48rem) {
+      order: 1;
+    }
   }
 </style>
