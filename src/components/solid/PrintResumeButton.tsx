@@ -5,10 +5,13 @@ import type { Component } from 'solid-js';
 type PrintResumeButtonProps = {
   ctaText?: string;
   resumeURI?: string;
+  slug?: string;
 };
 
 const PrintResumeButton: Component<PrintResumeButtonProps> = (props) => {
-  const merged = mergeProps({ ctaText: 'Print Resume', resumeURI: '/adam-knee-resume.pdf' }, props);
+  // If a slug is provided, use it to generate the PDF link, otherwise use the default
+  const dynamicResumeURI = props.slug ? `/adam-knee-${props.slug}.pdf` : '/adam-knee-resume.pdf';
+  const merged = mergeProps({ ctaText: 'Print Resume', resumeURI: dynamicResumeURI }, props);
 
   onMount(() => {
     const handleKeyDown = (event: KeyboardEvent): void => {

@@ -1,3 +1,27 @@
+/* Embla dots bottom right */
+.dots {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+}
+.dot,
+.dotActive {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--color-secondary-lavender-gray);
+  background: var(--color-secondary-lavender-gray-70);
+  cursor: pointer;
+  transition: background 0.2s;
+  padding: 0;
+}
+.dotActive {
+  background: var(--color-secondary-light-gray);
+  border-color: var(--color-cta-celestial-gold);
+}
 .carousel {
   position: relative;
   overflow: hidden;

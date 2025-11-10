@@ -9,14 +9,28 @@ const __dirname = dirname(__filename);
 
 async function generatePdf() {
   const pubDir = './public';
+  const name = 'adam-knee';
   const pdfSettings = {
     initSettings: {
       width: '8.5in',
       height: '11in',
       printBackground: true
     },
-    path: join(pubDir, 'adam-knee-resume.pdf'),
+    path: join(pubDir, `${name}-resume.pdf`),
     htmlSource: join(__dirname, '../dist/resume/index.html'),
+    desiredPageCount: 3,
+    defaultFontSize: 1.0,
+    multiPageSpacerHeight: 12 // Spacer height in pixels
+  };
+
+  const googlePdfSettings = {
+    initSettings: {
+      width: '8.5in',
+      height: '11in',
+      printBackground: true
+    },
+    path: join(pubDir, `${name}-google-application.pdf`),
+    htmlSource: join(__dirname, '../dist/google-application/index.html'),
     desiredPageCount: 3,
     defaultFontSize: 1.0,
     multiPageSpacerHeight: 12 // Spacer height in pixels
@@ -25,11 +39,11 @@ async function generatePdf() {
   const browser = await chromium.launch();
   const page = await browser.newPage();
 
-  console.log(`Grabbing resume from ${pdfSettings.htmlSource}.`);
+  console.log(`Grabbing resume from ${googlePdfSettings.htmlSource}.`);
 
-  const htmlContent = await readFile(pdfSettings.htmlSource, 'utf8');
+  const htmlContent = await readFile(googlePdfSettings.htmlSource, 'utf8');
 
-  let fontSize = pdfSettings.defaultFontSize; // Initial font size in em
+  let fontSize = googlePdfSettings.defaultFontSize; // Initial font size in em
   let pageCount = 0;
   let finalPdfBuffer;
 
@@ -52,7 +66,7 @@ async function generatePdf() {
     await page.setContent(modifiedHtmlContent, { waitUntil: 'networkidle' });
 
     // Generate PDF in memory
-    const pdfBuffer = await page.pdf(pdfSettings.initSettings);
+    const pdfBuffer = await page.pdf(googlePdfSettings.initSettings);
 
     // Post-process the PDF to move second-page content down
     const pdfDoc = await PDFDocument.load(pdfBuffer);
@@ -65,7 +79,7 @@ async function generatePdf() {
     pageCount = adjustedPdfDoc.getPageCount();
 
     console.log(
-      `Generated PDF with font-size ${fontSize}em, spacer height ${pdfSettings.multiPageSpacerHeight}px, and ${pageCount} pages.`
+      `Generated PDF with font-size ${fontSize}em, spacer height ${googlePdfSettings.multiPageSpacerHeight}px, and ${pageCount} pages.`
     );
 
     // Decrease font size if too many pages
@@ -73,18 +87,18 @@ async function generatePdf() {
 
     // Save the latest PDF buffer
     finalPdfBuffer = updatedPdfBuffer;
-  } while (pageCount > pdfSettings.desiredPageCount && fontSize > 0.5);
+  } while (pageCount > googlePdfSettings.desiredPageCount && fontSize > 0.5);
 
   // Ensure public directory exists
   await mkdir(pubDir, { recursive: true });
 
   // Save the final PDF to disk
-  await writeFile(pdfSettings.path, finalPdfBuffer);
+  await writeFile(googlePdfSettings.path, finalPdfBuffer);
 
   // Close the browser
   await browser.close();
 
-  console.log(`Final PDF generated at ${pdfSettings.path} with ${pageCount} pages.`);
+  console.log(`Final PDF generated at ${googlePdfSettings.path} with ${pageCount} pages.`);
 }
 
 generatePdf().catch((error) => {

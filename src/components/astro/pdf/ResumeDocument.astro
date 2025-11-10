@@ -20,7 +20,8 @@ type Job = {
 
 type Study = Omit<Job, 'company'>;
 
-const resume = await getResume();
+const { slug } = Astro.props;
+const resume = await getResume(slug);
 
 const hasEducation = resume?.educationEnabled && resume?.education?.length;
 const hasMainContent = resume?.highlights?.length || resume?.experience?.length || hasEducation;
@@ -68,7 +69,7 @@ const hasAsideContent = resume?.skills?.length;
           </section>
         )}
         <StickyWrapper>
-          <PrintResumeButton client:load />
+          <PrintResumeButton slug={slug} client:load />
         </StickyWrapper>
       </>
     )

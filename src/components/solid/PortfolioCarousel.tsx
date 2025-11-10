@@ -19,11 +19,13 @@ const Carousel: Component<EmblaCarouselProps> = (props) => {
   // signals to track whether we can scroll
   const [canPrev, setCanPrev] = createSignal(false);
   const [canNext, setCanNext] = createSignal(false);
+  const [selectedIndex, setSelectedIndex] = createSignal(0);
 
   // helper to update arrow state
   const updateButtons = (api: EmblaCarouselType) => {
     setCanPrev(api.canScrollPrev());
     setCanNext(api.canScrollNext());
+    setSelectedIndex(api.selectedScrollSnap());
   };
 
   onMount(() => {
@@ -62,6 +64,17 @@ const Carousel: Component<EmblaCarouselProps> = (props) => {
       >
         <ArrowSVG />
       </IconButton>
+      <div class={styles.dots}>
+        <For each={props.slides}>
+          {(_, i) => (
+            <button
+              class={selectedIndex() === i() ? styles.dotActive : styles.dot}
+              onClick={() => emblaApi()?.scrollTo(i())}
+              aria-label={`Go to slide ${i() + 1}`}
+            />
+          )}
+        </For>
+      </div>
     </div>
   );
 };

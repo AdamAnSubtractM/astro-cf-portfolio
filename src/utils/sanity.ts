@@ -13,8 +13,8 @@ async function getSanityData(query: string) {
   return data;
 }
 
-export async function getResume() {
-  const _query = `*[_type == "resume"][0] {
+export async function getResume(slug: string = 'portfolio') {
+  const _query = `*[_type == "resume" && slug.current == "${slug}"][0] {
                     ...,
                     logo->{
                       "svgUrl": svg.asset->url,
