@@ -36,7 +36,7 @@ const classes = ['section', includePadding && 'padding', isImportant && 'importa
     }
   }
   section {
-    padding: 0 var(--gap, 1em);
+    padding: 0;
     p {
       margin: 0.5em 0;
       padding: 0;
@@ -44,9 +44,16 @@ const classes = ['section', includePadding && 'padding', isImportant && 'importa
     ul {
       margin: 0.5em 0;
     }
+    @media (min-width: 48rem) {
+      padding: 0 var(--gap, 1em);
+    }
   }
   section.padding {
-    padding: var(--gap, 1em);
+    padding: 0;
+
+    @media (min-width: 48rem) {
+      padding: var(--gap, 1em);
+    }
   }
   section.important {
     p,

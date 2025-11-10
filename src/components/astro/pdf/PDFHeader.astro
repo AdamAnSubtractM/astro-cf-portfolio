@@ -92,7 +92,7 @@ const hasContactInfo = hasPrimaryInfo || hasSecpondaryInfo;
     color: var(--color-text-primary);
     background-color: var(--color-background-primary);
     border-bottom: 1px solid var(--color-secondary-lavender-gray);
-    padding: var(--gap, 1em) var(--gap, 1em) var(--gap-lg, 2em) var(--gap, 1em);
+    padding: var(--gap, 1em) 0 var(--gap-lg, 2em) 0;
     margin: 0;
     > div {
       display: flex;
@@ -104,6 +104,9 @@ const hasContactInfo = hasPrimaryInfo || hasSecpondaryInfo;
     @media (min-width: 580px) {
       flex-flow: row nowrap;
       align-items: stretch;
+    }
+    @media (min-width: 48rem) {
+      padding: var(--gap, 1em) var(--gap, 1em) var(--gap-lg, 2em) var(--gap, 1em);
     }
     @media print {
       background-color: var(--color-background-primary) !important;
