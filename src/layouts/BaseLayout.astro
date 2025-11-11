@@ -40,7 +40,10 @@ const className = backgroundImage ? 'background-image' : null;
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
+    @media (min-width: 48rem) {
+      background-attachment: fixed;
+    }
   }
 </style>
 
